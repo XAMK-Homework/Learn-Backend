@@ -1,0 +1,55 @@
+// esimerkki REST -rajapinnan suunnitelmasta:
+
+// create, read, update, delete (CRUD), corresponding REST operations:
+// POST (create), GET (read), PUT (update), DELETE
+
+//Listataan muutettavat tietosisällöt lähetettävine tietokenttineen ja operaatiot:
+
+1. Viestiketju (CRD)
+- Otsikko (CR): Luodaan ja luetaan
+- Viestisisältö (C): Luodaan viestin kautta
+
+2. Viesti (CRUD)
+- Otsikko (CRUD): Luodaan, luetaan, päivitetään ja poistetaan
+- Viestisisältö (CRUD): Luodaan, luetaan, päivitetään ja poistetaan
+
+3. Henkilötiedot (RU)
+- Käyttäjänimi (R): Luetaan
+- Sähköposti (RU): Luetaan ja päivitetään
+
+4. Käyttäjätili (CRUD)
+- Käyttäjän ID (CRD): Luodaan, luetaan ja poistetaan
+- Salasana (RU): Päivitetään
+
+5. Käyttäjärooli (RU)
+- Käyttäjän ID (R): Luetaan
+- Roolitaso (RU): Päivitetään
+
+6. Pelisaavutukset (CRUD)
+- Saavutuksen ID (CRUD): Luodaan, luetaan, päivitetään ja poistetaan
+- Saavutuksen kuvaus (CRUD): Luodaan, luetaan, päivitetään ja poistetaan
+- Käyttäjän ID (R): Liitetään käyttäjään
+
+7. Pelitilastot (RU)
+- Käyttäjän ID (R): Luetaan
+- Pelitilastot (RU): Luetaan ja päivitetään
+
+8. Muut tiedot ja toiminnot
+- Tieto X (C? R? U? D?)
+
+Esimerkkikutsut:
+Viestiketjun luonti:
+- POST /api/thread
+- Datasisältö: { "title": "Otsikko", "content": "Viesti" }
+
+Käyttäjätietojen päivitys:
+- PUT /api/user/{id}
+- Datasisältö: { "username": "uusiKäyttäjänimi", "email": "uusiSähköposti" }
+
+Pelisaavutusten haku käyttäjäprofiilissa:
+- GET /api/user/{id}/achievements
+- Ei datasisältöä
+
+Pelitilastojen päivitys:
+- PUT /api/user/{id}/stats
+- Datasisältö: { "stats": "uudetTilastotiedot" }
