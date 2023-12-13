@@ -102,15 +102,17 @@ $threadID = 0;
 
             $deleteMsgStr = "";
             $editMsgStr = "";
+            // If its message by logged user, show edit button
             if ($message['userid'] == $userID) {
                 // generate "Edit"-button/form
                 $editMsgStr = '<form style="margin-left: 10px;" action="/bb/edit.php" method="POST">
                                   <input type="hidden" name="msg" value="' . $message['id'] . '">
                                   <input type="hidden" name="thread_id" value="' . $threadID . '">
                                   <input type="submit" value="Edit">
-                                 </form>';
-
-
+                                 </form>';             
+            }
+            // If its message by logged user or if logged user is an admin, show delete button
+            if ($message['userid'] == $userID || $isAdmin) {
                 // generate "Delete"-button/form
                 $deleteMsgStr = '<form style="margin-left: 10px;" action="/bb/delmsg.php" method="POST">
                                   <input type="hidden" name="msg" value="' . $message['id'] . '">
@@ -120,7 +122,6 @@ $threadID = 0;
 
                                 
             }
-
             // Parse and format the date
             $mDate = DateTime::createFromFormat('Y-m-d H:i:s', $msgCreat);
             $mFormattedDate = $mDate->format('M d, Y - H:i:s');

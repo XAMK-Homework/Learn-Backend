@@ -6,8 +6,6 @@ class msgform
 	protected $threadID = NULL;
 	protected $hiddenInputs ="";
 
-	
-
 	public function __construct($actionURL = NULL) {
 		if(isset($actionURL)) $this->actionURL = $actionURL;
 	}

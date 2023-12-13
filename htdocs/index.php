@@ -8,4 +8,3 @@
 	header('Location: '.$uri.'/bb/index.php');
 	exit;
 ?>
-Something is wrong with the XAMPP installation :-(
