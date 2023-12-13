@@ -564,3 +564,39 @@
 [Wed Dec 13 21:18:02.347179 2023] [ssl:warn] [pid 16092:tid 336] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
 [Wed Dec 13 21:18:02.382815 2023] [ssl:warn] [pid 16092:tid 336] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
 [Wed Dec 13 21:18:02.437440 2023] [mpm_winnt:notice] [pid 16092:tid 336] AH00354: Child: Starting 150 worker threads.
+[Wed Dec 13 21:41:40.558568 2023] [ssl:warn] [pid 4720:tid 408] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Wed Dec 13 21:41:40.619911 2023] [core:warn] [pid 4720:tid 408] AH00098: pid file D:/xampp/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Wed Dec 13 21:41:40.621907 2023] [ssl:warn] [pid 4720:tid 408] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Wed Dec 13 21:41:40.863767 2023] [mpm_winnt:notice] [pid 4720:tid 408] AH00455: Apache/2.4.56 (Win64) OpenSSL/1.1.1t PHP/8.2.4 configured -- resuming normal operations
+[Wed Dec 13 21:41:40.863767 2023] [mpm_winnt:notice] [pid 4720:tid 408] AH00456: Apache Lounge VS16 Server built: Mar  7 2023 13:21:03
+[Wed Dec 13 21:41:40.863767 2023] [core:notice] [pid 4720:tid 408] AH00094: Command line: 'd:\\xampp\\apache\\bin\\httpd.exe -d D:/xampp/apache'
+[Wed Dec 13 21:41:40.866760 2023] [mpm_winnt:notice] [pid 4720:tid 408] AH00418: Parent: Created child process 4020
+[Wed Dec 13 21:41:41.696051 2023] [ssl:warn] [pid 4020:tid 420] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Wed Dec 13 21:41:41.733950 2023] [ssl:warn] [pid 4020:tid 420] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Wed Dec 13 21:41:41.770851 2023] [mpm_winnt:notice] [pid 4020:tid 420] AH00354: Child: Starting 150 worker threads.
+[Wed Dec 13 21:42:33.940991 2023] [php:warn] [pid 4020:tid 1852] [client ::1:62585] PHP Warning:  Undefined array key "username" in D:\\xampp\\htdocs\\bb\\include.php on line 47, referer: http://localhost/bb/index.php
+[Wed Dec 13 21:42:33.940991 2023] [php:error] [pid 4020:tid 1852] [client ::1:62585] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in D:\\xampp\\htdocs\\bb\\include.php:50\nStack trace:\n#0 D:\\xampp\\htdocs\\bb\\login.php(2): include()\n#1 {main}\n  thrown in D:\\xampp\\htdocs\\bb\\include.php on line 50, referer: http://localhost/bb/index.php
+[Wed Dec 13 21:42:40.392932 2023] [php:warn] [pid 4020:tid 1852] [client ::1:62586] PHP Warning:  Undefined array key "username" in D:\\xampp\\htdocs\\bb\\include.php on line 47, referer: http://localhost/bb/index.php
+[Wed Dec 13 21:42:40.393929 2023] [php:error] [pid 4020:tid 1852] [client ::1:62586] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in D:\\xampp\\htdocs\\bb\\include.php:50\nStack trace:\n#0 D:\\xampp\\htdocs\\bb\\login.php(2): include()\n#1 {main}\n  thrown in D:\\xampp\\htdocs\\bb\\include.php on line 50, referer: http://localhost/bb/index.php
+[Wed Dec 13 21:42:47.851700 2023] [php:warn] [pid 4020:tid 1852] [client ::1:62590] PHP Warning:  Undefined array key "username" in D:\\xampp\\htdocs\\bb\\include.php on line 47, referer: http://localhost/bb/index.php
+[Wed Dec 13 21:42:47.851700 2023] [php:error] [pid 4020:tid 1852] [client ::1:62590] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in D:\\xampp\\htdocs\\bb\\include.php:50\nStack trace:\n#0 D:\\xampp\\htdocs\\bb\\login.php(2): include()\n#1 {main}\n  thrown in D:\\xampp\\htdocs\\bb\\include.php on line 50, referer: http://localhost/bb/index.php
+[Wed Dec 13 21:46:42.269065 2023] [ssl:warn] [pid 8092:tid 400] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Wed Dec 13 21:46:42.297988 2023] [core:warn] [pid 8092:tid 400] AH00098: pid file D:/xampp/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Wed Dec 13 21:46:42.298985 2023] [ssl:warn] [pid 8092:tid 400] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Wed Dec 13 21:46:42.334889 2023] [mpm_winnt:notice] [pid 8092:tid 400] AH00455: Apache/2.4.56 (Win64) OpenSSL/1.1.1t PHP/8.2.4 configured -- resuming normal operations
+[Wed Dec 13 21:46:42.334889 2023] [mpm_winnt:notice] [pid 8092:tid 400] AH00456: Apache Lounge VS16 Server built: Mar  7 2023 13:21:03
+[Wed Dec 13 21:46:42.334889 2023] [core:notice] [pid 8092:tid 400] AH00094: Command line: 'd:\\xampp\\apache\\bin\\httpd.exe -d D:/xampp/apache'
+[Wed Dec 13 21:46:42.336883 2023] [mpm_winnt:notice] [pid 8092:tid 400] AH00418: Parent: Created child process 9392
+[Wed Dec 13 21:46:42.761257 2023] [ssl:warn] [pid 9392:tid 400] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Wed Dec 13 21:46:42.796163 2023] [ssl:warn] [pid 9392:tid 400] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Wed Dec 13 21:46:42.834062 2023] [mpm_winnt:notice] [pid 9392:tid 400] AH00354: Child: Starting 150 worker threads.
+[Wed Dec 13 21:48:17.958477 2023] [ssl:warn] [pid 5288:tid 408] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Wed Dec 13 21:48:17.985405 2023] [core:warn] [pid 5288:tid 408] AH00098: pid file D:/xampp/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Wed Dec 13 21:48:17.987400 2023] [ssl:warn] [pid 5288:tid 408] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Wed Dec 13 21:48:18.019314 2023] [mpm_winnt:notice] [pid 5288:tid 408] AH00455: Apache/2.4.56 (Win64) OpenSSL/1.1.1t PHP/8.2.4 configured -- resuming normal operations
+[Wed Dec 13 21:48:18.019314 2023] [mpm_winnt:notice] [pid 5288:tid 408] AH00456: Apache Lounge VS16 Server built: Mar  7 2023 13:21:03
+[Wed Dec 13 21:48:18.019314 2023] [core:notice] [pid 5288:tid 408] AH00094: Command line: 'd:\\xampp\\apache\\bin\\httpd.exe -d D:/xampp/apache'
+[Wed Dec 13 21:48:18.021309 2023] [mpm_winnt:notice] [pid 5288:tid 408] AH00418: Parent: Created child process 14680
+[Wed Dec 13 21:48:18.511000 2023] [ssl:warn] [pid 14680:tid 404] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Wed Dec 13 21:48:18.548899 2023] [ssl:warn] [pid 14680:tid 404] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Wed Dec 13 21:48:18.582808 2023] [mpm_winnt:notice] [pid 14680:tid 404] AH00354: Child: Starting 150 worker threads.
