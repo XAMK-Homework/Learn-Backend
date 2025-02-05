@@ -1,137 +1,146 @@
 <?php
 $jsonFileUsers = 'users.json';
-$jsonFileCourses = 'courses.json';
+$jsonFileCampaings = 'campaigns.json';
 $dataUsers = file_get_contents($jsonFileUsers);
-$dataCourses = file_get_contents($jsonFileCourses);
+$dataCampaigns = file_get_contents($jsonFileCampaings);
 $users = json_decode($dataUsers, true);
-$courses = json_decode($dataCourses, true);
+$campaigns = json_decode($dataCampaigns, true);
+
 $uri = $_SERVER['REQUEST_URI'];
 $method = $_SERVER['REQUEST_METHOD'];
 
-$apiPrefix = '/LearnHomework/Section_2/index.php/api';
-$apiUsers = '/users';
-$apiCourses = '/courses';
-
-$uriStartsWithApiPrefix = strpos($uri, $apiPrefix) === 0;
-
-switch ($method) {
-  case ('GET'):
-    // Check if uri starts with the prefix
-    if($uriStartsWithApiPrefix){ 
-      // check if its users uri
-      if (strpos($uri, $apiPrefix . $apiUsers) === 0) {
-        // check if we're getting specific user
-        if(preg_match('#'.$apiPrefix . $apiUsers.'/[1-9]+#', $uri)){
-          header('Content-Type: application/json');
-          $id = basename($uri);
-          if (!array_key_exists($id, $users)) {
-            http_response_code(404);
-            echo json_encode(['error' => 'user does not exist']);
-            break;
-          }
-          $responseData = [$id => $users[$id]];
-          echo json_encode($responseData, JSON_PRETTY_PRINT);
-          break;
-        }
-        // if it wasn't specific user, get the full user list
+switch ($method | $uri) {
+    // Get Users
+    case ($method == 'GET' && $uri == '/LearnHomework/Section_2/users'):
         header('Content-Type: application/json');
         echo json_encode($users, JSON_PRETTY_PRINT);
         break;
-      } 
-      // Check if its courses uri
-      elseif (strpos($uri, $apiPrefix . $apiCourses) === 0) {
-          // check if we're getting specific course
-        if(preg_match('#'.$apiPrefix . $apiCourses.'/[1-9]+#', $uri)){
-          header('Content-Type: application/json');
-          $id = basename($uri);
-          if (!array_key_exists($id, $courses)) {
-            http_response_code(404);
-            echo json_encode(['error' => 'course does not exist']);
-            break;
-          }
-          $responseData = [$id => $courses[$id]];
-          echo json_encode($responseData, JSON_PRETTY_PRINT);
-          break;
-        }
-        // if it wasn't specific user, get the full user list
+    // Get Users/5
+    case ($method == 'GET' && preg_match('/\/LearnHomework\/Section_2\/users\/[1-9]/', $uri)):
         header('Content-Type: application/json');
-        echo json_encode($courses, JSON_PRETTY_PRINT);
+        $id = basename($uri);
+        if (!array_key_exists($id, $users)) {
+            http_response_code(404);
+            echo json_encode(['error' => 'user does not exist']);
+            break;
+        }
+        echo json_encode([$id => $users[$id]], JSON_PRETTY_PRINT);
         break;
-      } 
-    }
-    break;
-
-  case ('POST'):
-    // Check if uri starts with the prefix
-    if($uriStartsWithApiPrefix){
-      // check if its users uri
-      if(strpos($uri, $apiPrefix . $apiUsers) === 0){
+    // Post Users (adding users)
+    case ($method == 'POST' && $uri == '/LearnHomework/Section_2/users'):
         header('Content-Type: application/json');
         $requestBody = json_decode(file_get_contents('php://input'), true);
         $name = $requestBody['name'];
-        if (!isset($name)) {
-          http_response_code(404);
-          echo json_encode(['error' => 'Please add name of the user']);
+        if (empty($name)) {
+            http_response_code(404);
+            echo json_encode(['error' => 'Please add name of the user']);
+            break;
         }
         $users[] = $name;
-        $dataUsers = json_encode($users, JSON_PRETTY_PRINT);
-        file_put_contents($jsonFileUsers, $dataUsers);
+        file_put_contents($jsonFileUsers, json_encode($users, JSON_PRETTY_PRINT));
         echo json_encode(['message' => 'user added successfully']);
         break;
-      }
-      // check if its courses uri
-      elseif(strpos($uri, $apiPrefix . $apiCourses) === 0){
+    // Put 1 User (adding 1 user)
+    case ($method == 'PUT' && preg_match('/\/LearnHomework\/Section_2\/users\/[1-9]/', $uri)):
+        header('Content-Type: application/json');
+        $id = basename($uri);
+        if (!array_key_exists($id, $users)) {
+            http_response_code(404);
+            echo json_encode(['error' => 'user does not exist']);
+            break;
+        }
+        $requestBody = json_decode(file_get_contents('php://input'), true);
+        $name = $requestBody['name'];
+        if (empty($name)) {
+            http_response_code(404);
+            echo json_encode(['error' => 'Please add name of the user']);
+            break;
+        }
+        $users[$id] = $name;
+        file_put_contents($jsonFileUsers, json_encode($users, JSON_PRETTY_PRINT));
+        echo json_encode(['message' => 'user updated successfully']);
+        break;
+    // Delete 1 user
+    case ($method == 'DELETE' && preg_match('/\/LearnHomework\/Section_2\/users\/[1-9]/', $uri)):
+        header('Content-Type: application/json');
+        $id = basename($uri);
+        if (empty($users[$id])) {
+            http_response_code(404);
+            echo json_encode(['error' => 'user does not exist']);
+            break;
+        }
+        unset($users[$id]);
+        file_put_contents($jsonFileUsers, json_encode($users, JSON_PRETTY_PRINT));
+        echo json_encode(['message' => 'user deleted successfully']);
+        break;
+
+    // ______________________________________________________________________________________________________________    
+    // Get Campaigns
+    case ($method == 'GET' && $uri == '/LearnHomework/Section_2/campaigns'):
+        header('Content-Type: application/json');
+        echo json_encode($campaigns, JSON_PRETTY_PRINT);
+        break;
+    // Get Campaign/5
+    case ($method == 'GET' && preg_match('/\/LearnHomework\/Section_2\/campaigns\/[1-9]/', $uri)):
+        header('Content-Type: application/json');
+        $id = basename($uri);
+        if (!array_key_exists($id, $campaigns)) {
+            http_response_code(404);
+            echo json_encode(['error' => 'campaign does not exist']);
+            break;
+        }
+        echo json_encode([$id => $campaigns[$id]], JSON_PRETTY_PRINT);
+        break;
+    // Post Campaigns (adding campaigns)
+    case ($method == 'POST' && $uri == '/LearnHomework/Section_2/campaigns'):
         header('Content-Type: application/json');
         $requestBody = json_decode(file_get_contents('php://input'), true);
-        $course = $requestBody['course'];
-        if (!isset($course)) {
-          http_response_code(404);
-          echo json_encode(['error' => 'Please add name of the course']);
+        $campaign = $requestBody['name'];
+        if (empty($campaign)) {
+            http_response_code(404);
+            echo json_encode(['error' => 'Please add name of the campaign']);
+            break;
         }
-        $courses[] = $course;
-        $dataCourses = json_encode($courses, JSON_PRETTY_PRINT);
-        file_put_contents($jsonFileCourses, $dataCourses);
-        echo json_encode(['message' => 'course added successfully']);
+        $campaigns[] = $campaign;
+        file_put_contents($jsonFileCampaings, json_encode($campaigns, JSON_PRETTY_PRINT));
+        echo json_encode(['message' => 'campaign added successfully']);
         break;
-      }
-    }
-    break;
-
-  case ('DELETE'):
-    if(preg_match('#'.$apiPrefix . $apiUsers.'/[1-9]+#', $uri)){
-      header('Content-Type: application/json');
-      // get the id
-      $id = basename($uri);
-      if (!isset($users[$id])) {
+    // Post 1 Campaign (adding 1 campaign)
+    case ($method == 'PUT' && preg_match('/\/LearnHomework\/Section_2\/campaigns\/[1-9]/', $uri)):
+        header('Content-Type: application/json');
+        $id = basename($uri);
+        if (!array_key_exists($id, $campaigns)) {
+            http_response_code(404);
+            echo json_encode(['error' => 'campaign does not exist']);
+            break;
+        }
+        $requestBody = json_decode(file_get_contents('php://input'), true);
+        $campaign = $requestBody['name'];
+        if (empty($campaign)) {
+            http_response_code(404);
+            echo json_encode(['error' => 'Please add name of the campaign']);
+            break;
+        }
+        $campaigns[$id] = $campaign;
+        file_put_contents($jsonFileCampaings, json_encode($campaigns, JSON_PRETTY_PRINT));
+        echo json_encode(['message' => 'campaign updated successfully']);
+        break;
+    // Delete 1 campaign
+    case ($method == 'DELETE' && preg_match('/\/LearnHomework\/Section_2\/campaigns\/[1-9]/', $uri)):
+        header('Content-Type: application/json');
+        $id = basename($uri);
+        if (empty($campaigns[$id])) {
+            http_response_code(404);
+            echo json_encode(['error' => 'campaign does not exist']);
+            break;
+        }
+        unset($campaigns[$id]);
+        file_put_contents($jsonFileCampaings, json_encode($campaigns, JSON_PRETTY_PRINT));
+        echo json_encode(['message' => 'campaign deleted successfully']);
+        break;
+    // Error with the search
+    default:
         http_response_code(404);
-        echo json_encode(['error' => 'user does not exist']);
+        echo json_encode(['error' => "We cannot find what you're looking for."]);
         break;
-      }
-      unset($users[$id]);
-      $data = json_encode($users, JSON_PRETTY_PRINT);
-      file_put_contents($jsonFileUsers, $data);
-      echo json_encode(['message' => 'user deleted successfully']);
-      break;
-    }
-    elseif (preg_match('#'.$apiPrefix . $apiCourses.'/[1-9]+#', $uri)) {
-      header('Content-Type: application/json');
-      // get the id
-      $id = basename($uri);
-      if (!isset($courses[$id])) {
-        http_response_code(404);
-        echo json_encode(['error' => 'course does not exist']);
-        break;
-      }
-      unset($courses[$id]);
-      $data = json_encode($courses, JSON_PRETTY_PRINT);
-      file_put_contents($jsonFileCourses, $data);
-      echo json_encode(['message' => 'course deleted successfully']);
-      break;
-    }
-    
-  default:
-    http_response_code(404);
-    echo json_encode(['error' => "We cannot find what you're looking for."]);
-    break;
 }
-?>
