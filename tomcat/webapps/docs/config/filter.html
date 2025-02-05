@@ -1,8 +1,8 @@
 <!DOCTYPE html SYSTEM "about:legacy-compat">
-<html lang="en"><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8"><link href="../images/docs-stylesheet.css" rel="stylesheet" type="text/css"><title>Apache Tomcat 8 Configuration Reference (8.5.87) - Container Provided Filters</title></head><body><div id="wrapper"><header><div id="header"><div><div><div class="logo noPrint"><a href="https://tomcat.apache.org/"><img alt="Tomcat Home" src="../images/tomcat.png"></a></div><div style="height: 1px;"></div><div class="asfLogo noPrint"><a href="https://www.apache.org/" target="_blank"><img src="../images/asf-logo.svg" alt="The Apache Software Foundation" style="width: 266px; height: 83px;"></a></div><h1>Apache Tomcat 8 Configuration Reference</h1><div class="versionInfo">
-            Version 8.5.87,
-            <time datetime="2023-02-27">Feb 27 2023</time></div><div style="height: 1px;"></div><div style="clear: left;"></div></div></div></div></header><div id="middle"><div><div id="mainLeft" class="noprint"><div><nav><div><h2>Links</h2><ul><li><a href="../index.html">Docs Home</a></li><li><a href="index.html">Config Ref. Home</a></li><li><a href="https://cwiki.apache.org/confluence/display/TOMCAT/FAQ">FAQ</a></li><li><a href="#comments_section">User Comments</a></li></ul></div><div><h2>Top Level Elements</h2><ul><li><a href="server.html">Server</a></li><li><a href="service.html">Service</a></li></ul></div><div><h2>Executors</h2><ul><li><a href="executor.html">Executor</a></li></ul></div><div><h2>Connectors</h2><ul><li><a href="http.html">HTTP/1.1</a></li><li><a href="http2.html">HTTP/2</a></li><li><a href="ajp.html">AJP</a></li></ul></div><div><h2>Containers</h2><ul><li><a href="context.html">Context</a></li><li><a href="engine.html">Engine</a></li><li><a href="host.html">Host</a></li><li><a href="cluster.html">Cluster</a></li></ul></div><div><h2>Nested Components</h2><ul><li><a href="cookie-processor.html">CookieProcessor</a></li><li><a href="credentialhandler.html">CredentialHandler</a></li><li><a href="globalresources.html">Global Resources</a></li><li><a href="jar-scanner.html">JarScanner</a></li><li><a href="jar-scan-filter.html">JarScanFilter</a></li><li><a href="listeners.html">Listeners</a></li><li><a href="loader.html">Loader</a></li><li><a href="manager.html">Manager</a></li><li><a href="realm.html">Realm</a></li><li><a href="resources.html">Resources</a></li><li><a href="sessionidgenerator.html">SessionIdGenerator</a></li><li><a href="valve.html">Valve</a></li></ul></div><div><h2>Cluster Elements</h2><ul><li><a href="cluster.html">Cluster</a></li><li><a href="cluster-manager.html">Manager</a></li><li><a href="cluster-channel.html">Channel</a></li><li><a href="cluster-membership.html">Channel/Membership</a></li><li><a href="cluster-sender.html">Channel/Sender</a></li><li><a href="cluster-receiver.html">Channel/Receiver</a></li><li><a href="cluster-interceptor.html">Channel/Interceptor</a></li><li><a href="cluster-valve.html">Valve</a></li><li><a href="cluster-deployer.html">Deployer</a></li><li><a href="cluster-listener.html">ClusterListener</a></li></ul></div><div><h2>web.xml</h2><ul><li><a href="filter.html">Filter</a></li></ul></div><div><h2>Other</h2><ul><li><a href="systemprops.html">System properties</a></li><li><a href="jaspic.html">JASPIC</a></li></ul></div></nav></div></div><div id="mainRight"><div id="content"><h2>Container Provided Filters</h2><h3 id="Table_of_Contents">Table of Contents</h3><div class="text">
-<ul><li><a href="#Introduction">Introduction</a></li><li><a href="#Add_Default_Character_Set_Filter">Add Default Character Set Filter</a><ol><li><a href="#Add_Default_Character_Set_Filter/Introduction">Introduction</a></li><li><a href="#Add_Default_Character_Set_Filter/Filter_Class_Name">Filter Class Name</a></li><li><a href="#Add_Default_Character_Set_Filter/Initialisation_parameters">Initialisation parameters</a></li></ol></li><li><a href="#CORS_Filter">CORS Filter</a><ol><li><a href="#CORS_Filter/Introduction">Introduction</a></li><li><a href="#CORS_Filter/Filter_Class_Name">Filter Class Name</a></li><li><a href="#CORS_Filter/Initialisation_parameters">Initialisation parameters</a></li><li><a href="#CORS_Filter_and_HttpServletRequest_attributes">CORS Filter and HttpServletRequest attributes</a></li></ol></li><li><a href="#CSRF_Prevention_Filter">CSRF Prevention Filter</a><ol><li><a href="#CSRF_Prevention_Filter/Introduction">Introduction</a></li><li><a href="#CSRF_Prevention_Filter/Filter_Class_Name">Filter Class Name</a></li><li><a href="#CSRF_Prevention_Filter/Initialisation_parameters">Initialisation parameters</a></li></ol></li><li><a href="#CSRF_Prevention_Filter_for_REST_APIs">CSRF Prevention Filter for REST APIs</a><ol><li><a href="#CSRF_Prevention_Filter_for_REST_APIs/Introduction">Introduction</a></li><li><a href="#CSRF_Prevention_Filter_for_REST_APIs/Basic_configuration_sample">Basic configuration sample</a></li><li><a href="#RestCsrfPreventionFilter_and_HttpServletRequest_parameters">RestCsrfPreventionFilter and HttpServletRequest parameters</a></li><li><a href="#CSRF_Prevention_Filter_for_REST_APIs/Filter_Class_Name">Filter Class Name</a></li><li><a href="#CSRF_Prevention_Filter_for_REST_APIs/Initialisation_parameters">Initialisation parameters</a></li></ol></li><li><a href="#Expires_Filter">Expires Filter</a><ol><li><a href="#Expires_Filter/Introduction">Introduction</a></li><li><a href="#Expires_Filter/Basic_configuration_sample">Basic configuration sample</a></li><li><a href="#Alternate_Syntax">Alternate Syntax</a></li><li><a href="#Expiration_headers_generation_eligibility">Expiration headers generation eligibility</a></li><li><a href="#Expiration_configuration_selection">Expiration configuration selection</a></li><li><a href="#Expires_Filter/Filter_Class_Name">Filter Class Name</a></li><li><a href="#Expires_Filter/Initialisation_parameters">Initialisation parameters</a></li><li><a href="#Troubleshooting">Troubleshooting</a></li></ol></li><li><a href="#Failed_Request_Filter">Failed Request Filter</a><ol><li><a href="#Failed_Request_Filter/Introduction">Introduction</a></li><li><a href="#Failed_Request_Filter/Filter_Class_Name">Filter Class Name</a></li><li><a href="#Failed_Request_Filter/Initialisation_parameters">Initialisation parameters</a></li></ol></li><li><a href="#HTTP_Header_Security_Filter">HTTP Header Security Filter</a><ol><li><a href="#HTTP_Header_Security_Filter/Introduction">Introduction</a></li><li><a href="#HTTP_Header_Security_Filter/Filter_Class_Name">Filter Class Name</a></li><li><a href="#HTTP_Header_Security_Filter/Initialisation_parameters">Initialisation parameters</a></li></ol></li><li><a href="#Remote_Address_Filter">Remote Address Filter</a><ol><li><a href="#Remote_Address_Filter/Introduction">Introduction</a></li><li><a href="#Remote_Address_Filter/Filter_Class_Name">Filter Class Name</a></li><li><a href="#Remote_Address_Filter/Initialisation_parameters">Initialisation parameters</a></li><li><a href="#Remote_Address_Filter/Example">Example</a></li></ol></li><li><a href="#Remote_Host_Filter">Remote Host Filter</a><ol><li><a href="#Remote_Host_Filter/Introduction">Introduction</a></li><li><a href="#Remote_Host_Filter/Filter_Class_Name">Filter Class Name</a></li><li><a href="#Remote_Host_Filter/Initialisation_parameters">Initialisation parameters</a></li></ol></li><li><a href="#Remote_CIDR_Filter">Remote CIDR Filter</a><ol><li><a href="#Remote_CIDR_Filter/Introduction">Introduction</a></li><li><a href="#Remote_CIDR_Filter/Filter_Class_Name">Filter Class Name</a></li><li><a href="#Remote_CIDR_Filter/Initialisation_parameters">Initialisation parameters</a></li><li><a href="#Remote_CIDR_Filter/Example">Example</a></li></ol></li><li><a href="#Remote_IP_Filter">Remote IP Filter</a><ol><li><a href="#Remote_IP_Filter/Introduction">Introduction</a></li><li><a href="#Remote_IP_Filter/Filter_Class_Name">Filter Class Name</a></li><li><a href="#Basic_configuration_to_handle_'x-forwarded-for'">Basic configuration to handle 'x-forwarded-for'</a></li><li><a href="#Basic_configuration_to_handle_'x-forwarded-for'_and_'x-forwarded-proto'">Basic configuration to handle 'x-forwarded-for' and 'x-forwarded-proto'</a></li><li><a href="#Advanced_configuration_with_internal_proxies">Advanced configuration with internal proxies</a></li><li><a href="#Advanced_configuration_with_trusted_proxies">Advanced configuration with trusted proxies</a></li><li><a href="#Advanced_configuration_with_internal_and_trusted_proxies">Advanced configuration with internal and trusted proxies</a></li><li><a href="#Advanced_configuration_with_an_untrusted_proxy">Advanced configuration with an untrusted proxy</a></li><li><a href="#Remote_IP_Filter/Initialisation_parameters">Initialisation parameters</a></li></ol></li><li><a href="#Request_Dumper_Filter">Request Dumper Filter</a><ol><li><a href="#Request_Dumper_Filter/Introduction">Introduction</a></li><li><a href="#Request_Dumper_Filter/Filter_Class_Name">Filter Class Name</a></li><li><a href="#Request_Dumper_Filter/Initialisation_parameters">Initialisation parameters</a></li><li><a href="#Request_Dumper_Filter/Sample_Configuration">Sample Configuration</a></li></ol></li><li><a href="#Session_Initializer_Filter">Session Initializer Filter</a><ol><li><a href="#Session_Initializer_Filter/Introduction">Introduction</a></li><li><a href="#Session_Initializer_Filter/Filter_Class_Name">Filter Class Name</a></li><li><a href="#Session_Initializer_Filter/Initialisation_parameters">Initialisation parameters</a></li><li><a href="#Session_Initializer_Filter/Sample_Configuration">Sample Configuration</a></li></ol></li><li><a href="#Set_Character_Encoding_Filter">Set Character Encoding Filter</a><ol><li><a href="#Set_Character_Encoding_Filter/Introduction">Introduction</a></li><li><a href="#Set_Character_Encoding_Filter/Filter_Class_Name">Filter Class Name</a></li><li><a href="#Set_Character_Encoding_Filter/Initialisation_parameters">Initialisation parameters</a></li></ol></li><li><a href="#WebDAV_Fix_Filter">WebDAV Fix Filter</a><ol><li><a href="#WebDAV_Fix_Filter/Introduction">Introduction</a></li><li><a href="#WebDAV_Fix_Filter/Filter_Class_Name">Filter Class Name</a></li><li><a href="#WebDAV_Fix_Filter/Initialisation_parameters">Initialisation parameters</a></li></ol></li></ul>
+<html lang="en"><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8"><link href="../images/docs-stylesheet.css" rel="stylesheet" type="text/css"><title>Apache Tomcat 8 Configuration Reference (8.5.96) - Container Provided Filters</title></head><body><div id="wrapper"><header><div id="header"><div><div><div class="logo noPrint"><a href="https://tomcat.apache.org/"><img alt="Tomcat Home" src="../images/tomcat.png"></a></div><div style="height: 1px;"></div><div class="asfLogo noPrint"><a href="https://www.apache.org/" target="_blank"><img src="../images/asf-logo.svg" alt="The Apache Software Foundation" style="width: 266px; height: 83px;"></a></div><h1>Apache Tomcat 8 Configuration Reference</h1><div class="versionInfo">
+            Version 8.5.96,
+            <time datetime="2023-11-10">Nov 10 2023</time></div><div style="height: 1px;"></div><div style="clear: left;"></div></div></div></div></header><div id="middle"><div><div id="mainLeft" class="noprint"><div><nav><div><h2>Links</h2><ul><li><a href="../index.html">Docs Home</a></li><li><a href="index.html">Config Ref. Home</a></li><li><a href="https://cwiki.apache.org/confluence/display/TOMCAT/FAQ">FAQ</a></li><li><a href="#comments_section">User Comments</a></li></ul></div><div><h2>Top Level Elements</h2><ul><li><a href="server.html">Server</a></li><li><a href="service.html">Service</a></li></ul></div><div><h2>Executors</h2><ul><li><a href="executor.html">Executor</a></li></ul></div><div><h2>Connectors</h2><ul><li><a href="http.html">HTTP/1.1</a></li><li><a href="http2.html">HTTP/2</a></li><li><a href="ajp.html">AJP</a></li></ul></div><div><h2>Containers</h2><ul><li><a href="context.html">Context</a></li><li><a href="engine.html">Engine</a></li><li><a href="host.html">Host</a></li><li><a href="cluster.html">Cluster</a></li></ul></div><div><h2>Nested Components</h2><ul><li><a href="cookie-processor.html">CookieProcessor</a></li><li><a href="credentialhandler.html">CredentialHandler</a></li><li><a href="globalresources.html">Global Resources</a></li><li><a href="jar-scanner.html">JarScanner</a></li><li><a href="jar-scan-filter.html">JarScanFilter</a></li><li><a href="listeners.html">Listeners</a></li><li><a href="loader.html">Loader</a></li><li><a href="manager.html">Manager</a></li><li><a href="realm.html">Realm</a></li><li><a href="resources.html">Resources</a></li><li><a href="sessionidgenerator.html">SessionIdGenerator</a></li><li><a href="valve.html">Valve</a></li></ul></div><div><h2>Cluster Elements</h2><ul><li><a href="cluster.html">Cluster</a></li><li><a href="cluster-manager.html">Manager</a></li><li><a href="cluster-channel.html">Channel</a></li><li><a href="cluster-membership.html">Channel/Membership</a></li><li><a href="cluster-sender.html">Channel/Sender</a></li><li><a href="cluster-receiver.html">Channel/Receiver</a></li><li><a href="cluster-interceptor.html">Channel/Interceptor</a></li><li><a href="cluster-valve.html">Valve</a></li><li><a href="cluster-deployer.html">Deployer</a></li><li><a href="cluster-listener.html">ClusterListener</a></li></ul></div><div><h2>web.xml</h2><ul><li><a href="filter.html">Filter</a></li></ul></div><div><h2>Other</h2><ul><li><a href="systemprops.html">System properties</a></li><li><a href="jaspic.html">JASPIC</a></li></ul></div></nav></div></div><div id="mainRight"><div id="content"><h2>Container Provided Filters</h2><h3 id="Table_of_Contents">Table of Contents</h3><div class="text">
+<ul><li><a href="#Introduction">Introduction</a></li><li><a href="#Add_Default_Character_Set_Filter">Add Default Character Set Filter</a><ol><li><a href="#Add_Default_Character_Set_Filter/Introduction">Introduction</a></li><li><a href="#Add_Default_Character_Set_Filter/Filter_Class_Name">Filter Class Name</a></li><li><a href="#Add_Default_Character_Set_Filter/Initialisation_parameters">Initialisation parameters</a></li></ol></li><li><a href="#CORS_Filter">CORS Filter</a><ol><li><a href="#CORS_Filter/Introduction">Introduction</a></li><li><a href="#CORS_Filter/Filter_Class_Name">Filter Class Name</a></li><li><a href="#CORS_Filter/Initialisation_parameters">Initialisation parameters</a></li><li><a href="#CORS_Filter_and_HttpServletRequest_attributes">CORS Filter and HttpServletRequest attributes</a></li></ol></li><li><a href="#CSRF_Prevention_Filter">CSRF Prevention Filter</a><ol><li><a href="#CSRF_Prevention_Filter/Introduction">Introduction</a></li><li><a href="#CSRF_Prevention_Filter/Filter_Class_Name">Filter Class Name</a></li><li><a href="#CSRF_Prevention_Filter/Initialisation_parameters">Initialisation parameters</a></li></ol></li><li><a href="#CSRF_Prevention_Filter_for_REST_APIs">CSRF Prevention Filter for REST APIs</a><ol><li><a href="#CSRF_Prevention_Filter_for_REST_APIs/Introduction">Introduction</a></li><li><a href="#CSRF_Prevention_Filter_for_REST_APIs/Basic_configuration_sample">Basic configuration sample</a></li><li><a href="#RestCsrfPreventionFilter_and_HttpServletRequest_parameters">RestCsrfPreventionFilter and HttpServletRequest parameters</a></li><li><a href="#CSRF_Prevention_Filter_for_REST_APIs/Filter_Class_Name">Filter Class Name</a></li><li><a href="#CSRF_Prevention_Filter_for_REST_APIs/Initialisation_parameters">Initialisation parameters</a></li></ol></li><li><a href="#Expires_Filter">Expires Filter</a><ol><li><a href="#Expires_Filter/Introduction">Introduction</a></li><li><a href="#Expires_Filter/Basic_configuration_sample">Basic configuration sample</a></li><li><a href="#Alternate_Syntax">Alternate Syntax</a></li><li><a href="#Expiration_headers_generation_eligibility">Expiration headers generation eligibility</a></li><li><a href="#Expiration_configuration_selection">Expiration configuration selection</a></li><li><a href="#Expires_Filter/Filter_Class_Name">Filter Class Name</a></li><li><a href="#Expires_Filter/Initialisation_parameters">Initialisation parameters</a></li><li><a href="#Troubleshooting">Troubleshooting</a></li></ol></li><li><a href="#Failed_Request_Filter">Failed Request Filter</a><ol><li><a href="#Failed_Request_Filter/Introduction">Introduction</a></li><li><a href="#Failed_Request_Filter/Filter_Class_Name">Filter Class Name</a></li><li><a href="#Failed_Request_Filter/Initialisation_parameters">Initialisation parameters</a></li></ol></li><li><a href="#HTTP_Header_Security_Filter">HTTP Header Security Filter</a><ol><li><a href="#HTTP_Header_Security_Filter/Introduction">Introduction</a></li><li><a href="#HTTP_Header_Security_Filter/Filter_Class_Name">Filter Class Name</a></li><li><a href="#HTTP_Header_Security_Filter/Initialisation_parameters">Initialisation parameters</a></li></ol></li><li><a href="#Rate_Limit_Filter">Rate Limit Filter</a><ol><li><a href="#Rate_Limit_Filter/Introduction">Introduction</a></li><li><a href="#Rate_Limit_Filter/Filter_Class_Name">Filter Class Name</a></li><li><a href="#Rate_Limit_Filter/Initialisation_parameters">Initialisation parameters</a></li><li><a href="#Rate_Limit_Filter/Example">Example</a></li></ol></li><li><a href="#Remote_Address_Filter">Remote Address Filter</a><ol><li><a href="#Remote_Address_Filter/Introduction">Introduction</a></li><li><a href="#Remote_Address_Filter/Filter_Class_Name">Filter Class Name</a></li><li><a href="#Remote_Address_Filter/Initialisation_parameters">Initialisation parameters</a></li><li><a href="#Remote_Address_Filter/Example">Example</a></li></ol></li><li><a href="#Remote_Host_Filter">Remote Host Filter</a><ol><li><a href="#Remote_Host_Filter/Introduction">Introduction</a></li><li><a href="#Remote_Host_Filter/Filter_Class_Name">Filter Class Name</a></li><li><a href="#Remote_Host_Filter/Initialisation_parameters">Initialisation parameters</a></li></ol></li><li><a href="#Remote_CIDR_Filter">Remote CIDR Filter</a><ol><li><a href="#Remote_CIDR_Filter/Introduction">Introduction</a></li><li><a href="#Remote_CIDR_Filter/Filter_Class_Name">Filter Class Name</a></li><li><a href="#Remote_CIDR_Filter/Initialisation_parameters">Initialisation parameters</a></li><li><a href="#Remote_CIDR_Filter/Example">Example</a></li></ol></li><li><a href="#Remote_IP_Filter">Remote IP Filter</a><ol><li><a href="#Remote_IP_Filter/Introduction">Introduction</a></li><li><a href="#Remote_IP_Filter/Filter_Class_Name">Filter Class Name</a></li><li><a href="#Basic_configuration_to_handle_'x-forwarded-for'">Basic configuration to handle 'x-forwarded-for'</a></li><li><a href="#Basic_configuration_to_handle_'x-forwarded-for'_and_'x-forwarded-proto'">Basic configuration to handle 'x-forwarded-for' and 'x-forwarded-proto'</a></li><li><a href="#Advanced_configuration_with_internal_proxies">Advanced configuration with internal proxies</a></li><li><a href="#Advanced_configuration_with_trusted_proxies">Advanced configuration with trusted proxies</a></li><li><a href="#Advanced_configuration_with_internal_and_trusted_proxies">Advanced configuration with internal and trusted proxies</a></li><li><a href="#Advanced_configuration_with_an_untrusted_proxy">Advanced configuration with an untrusted proxy</a></li><li><a href="#Remote_IP_Filter/Initialisation_parameters">Initialisation parameters</a></li></ol></li><li><a href="#Request_Dumper_Filter">Request Dumper Filter</a><ol><li><a href="#Request_Dumper_Filter/Introduction">Introduction</a></li><li><a href="#Request_Dumper_Filter/Filter_Class_Name">Filter Class Name</a></li><li><a href="#Request_Dumper_Filter/Initialisation_parameters">Initialisation parameters</a></li><li><a href="#Request_Dumper_Filter/Sample_Configuration">Sample Configuration</a></li></ol></li><li><a href="#Session_Initializer_Filter">Session Initializer Filter</a><ol><li><a href="#Session_Initializer_Filter/Introduction">Introduction</a></li><li><a href="#Session_Initializer_Filter/Filter_Class_Name">Filter Class Name</a></li><li><a href="#Session_Initializer_Filter/Initialisation_parameters">Initialisation parameters</a></li><li><a href="#Session_Initializer_Filter/Sample_Configuration">Sample Configuration</a></li></ol></li><li><a href="#Set_Character_Encoding_Filter">Set Character Encoding Filter</a><ol><li><a href="#Set_Character_Encoding_Filter/Introduction">Introduction</a></li><li><a href="#Set_Character_Encoding_Filter/Filter_Class_Name">Filter Class Name</a></li><li><a href="#Set_Character_Encoding_Filter/Initialisation_parameters">Initialisation parameters</a></li></ol></li><li><a href="#WebDAV_Fix_Filter">WebDAV Fix Filter</a><ol><li><a href="#WebDAV_Fix_Filter/Introduction">Introduction</a></li><li><a href="#WebDAV_Fix_Filter/Filter_Class_Name">Filter Class Name</a></li><li><a href="#WebDAV_Fix_Filter/Initialisation_parameters">Initialisation parameters</a></li></ol></li></ul>
 </div><h3 id="Introduction">Introduction</h3><div class="text">
 
   <p>Tomcat provides a number of <strong>Filters</strong> which may be
@@ -471,7 +471,7 @@ HTTP/1.1 200 OK
     &lt;param-value&gt;access plus 10 minutes&lt;/param-value&gt;
  &lt;/init-param&gt;
  &lt;init-param&gt;
-    &lt;param-name&gt;ExpiresByType application/javascript&lt;/param-name&gt;
+    &lt;param-name&gt;ExpiresByType text/javascript&lt;/param-name&gt;
     &lt;param-value&gt;access plus 10 minutes&lt;/param-value&gt;
  &lt;/init-param&gt;
 &lt;/filter&gt;
@@ -870,12 +870,129 @@ FINE: Request "/docs/config/manager.html" with response status "200"
         already present, the header will be replaced. If not specified, the
         default value of <code>true</code> will be used.</p>
       </td></tr><tr><td><code class="attributeName">xssProtectionEnabled</code></td><td>
+        <p><strong>Note: This setting is deprecated as support for the HTTP
+        header has been removed from all major browsers. The setting has been
+        removed in Tomcat 11.0.x onwards.</strong></p>
         <p>Should the header that enables the browser's cross-site scripting
         filter protection (<code>X-XSS-Protection: 1; mode=block</code>)
         be set on every response. If already present, the header
         will be replaced. If not specified, the default value of
-        <code>true</code> will be used.</p>
+        <code>false</code> will be used.</p>
       </td></tr></table>
+
+  </div></div>
+
+</div><h3 id="Rate_Limit_Filter">Rate Limit Filter</h3><div class="text">
+
+  <div class="subsection"><h4 id="Rate_Limit_Filter/Introduction">Introduction</h4><div class="text">
+
+    <p>The <strong>Rate Limit Filter</strong> can help mitigate Denial of Service
+    (DoS) and Brute Force attacks by limiting the number of a requests that are
+    allowed from a single IP address within a time window (also referred
+    to as a time bucket), e.g. 300 Requests per 60 seconds.</p>
+
+    <p>The filter works by incrementing a counter in a time bucket for each IP
+    address, and if the counter exceeds the allowed limit then further requests
+    from that IP are dropped with a "429 Too many requests" response
+    until the bucket time ends and a new bucket starts.</p>
+
+    <p>The filter is optimized for efficiency and low overhead, so it converts
+    some configured values to more efficient values. For example, a configuration
+    of a 60 seconds time bucket is converted to 65.536 seconds. That allows
+    for very fast bucket calculation using bit shift arithmetic. In order to remain
+    true to the user intent, the configured number of requests is then multiplied
+    by the same ratio, so a configuration of 100 Requests per 60 seconds, has the
+    real values of 109 Requests per 65 seconds.</p>
+
+    <p>It is common to set up different restrictions for different URIs.
+    For example, a login page or authentication script is typically expected
+    to get far less requests than the rest of the application, so you can add
+    a filter definition that would allow only 5 requests per 15 seconds and map
+    those URIs to it.</p>
+
+    <p>You can set <code>enforce</code> to <code>false</code>
+    to disable the termination of requests that exceed the allowed limit. Then
+    your application code can inspect the Request Attribute
+    <code>org.apache.catalina.filters.RateLimitFilter.Count</code> and decide
+    how to handle the request based on other information that it has, e.g. allow
+    more requests to certain users based on roles, etc.</p>
+
+    <p><strong>WARNING:</strong> if Tomcat is behind a reverse proxy then you must
+    make sure that the Rate Limit Filter sees the client IP address, so if for
+    example you are using the <a href="#Remote_IP_Filter">Remote IP Filter</a>,
+    then the filter mapping for the Rate Limit Filter must come <em>after</em>
+    the mapping of the Remote IP Filter to ensure that each request has its IP
+    address resolved before the Rate Limit Filter is applied. Failure to do so
+    will count requests from different IPs in the same bucket and will result in
+    a self inflicted DoS attack.</p>
+
+  </div></div>
+
+  <div class="subsection"><h4 id="Rate_Limit_Filter/Filter_Class_Name">Filter Class Name</h4><div class="text">
+
+    <p>The filter class name for the Remote Address Filter is
+    <strong><code>org.apache.catalina.filters.RateLimitFilter</code>
+    </strong>.</p>
+
+  </div></div>
+
+  <div class="subsection"><h4 id="Rate_Limit_Filter/Initialisation_parameters">Initialisation parameters</h4><div class="text">
+
+    <p>The <strong>Rate Limit Filter</strong> supports the following
+    initialisation parameters:</p>
+
+    <table class="defaultTable"><tr><th style="width: 15%;">
+          Attribute
+        </th><th style="width: 85%;">
+          Description
+        </th></tr><tr><td><code class="attributeName">bucketDuration</code></td><td>
+        <p>The number of seconds in a time bucket. Default is <code>60</code>.</p>
+      </td></tr><tr><td><code class="attributeName">bucketRequests</code></td><td>
+        <p>The number of requests that are allowed in a time bucket.
+        Default is <code>300</code>.</p>
+      </td></tr><tr><td><code class="attributeName">enforce</code></td><td>
+        <p>Set to false to allow requests through even when they exceed
+        the maximum allowed per time window. Your application code can
+        still inspect the Request Attribute
+        org.apache.catalina.filters.RateLimitFilter.Count to retrieve
+        the number of Requests made from that IP within the time window.
+        Default is <code>true</code>.</p>
+      </td></tr><tr><td><code class="attributeName">statusCode</code></td><td>
+        <p>The status code to return when a request is dropped.
+        Default is <code>429</code>.</p>
+      </td></tr><tr><td><code class="attributeName">statusMessage</code></td><td>
+        <p>The status message to return when a request is dropped.
+        Default is "Too many requests".</p>
+      </td></tr></table>
+
+  </div></div>
+
+  <div class="subsection"><h4 id="Rate_Limit_Filter/Example">Example</h4><div class="text">
+    <p>Set the site rate limit to 300 Requests per minute (default):</p>
+<div class="codeBox"><pre><code>    &lt;filter&gt;
+        &lt;filter-name&gt;RateLimitFilter Global&lt;/filter-name&gt;
+        &lt;filter-class&gt;org.apache.catalina.filters.RateLimitFilter&lt;/filter-class&gt;
+    &lt;/filter&gt;
+
+    &lt;filter-mapping&gt;
+        &lt;filter-name&gt;RateLimitFilter Global&lt;/filter-name&gt;
+        &lt;url-pattern&gt;*&lt;/url-pattern&gt;
+    &lt;/filter-mapping&gt;</code></pre></div>
+
+    <p>Set the /auth/* scripts rate limit to 20 Requests per minute:</p>
+<div class="codeBox"><pre><code>    &lt;filter&gt;
+        &lt;filter-name&gt;RateLimitFilter Login&lt;/filter-name&gt;
+        &lt;filter-class&gt;org.apache.catalina.filters.RateLimitFilter&lt;/filter-class&gt;
+        &lt;init-param&gt;
+            &lt;param-name&gt;bucketRequests&lt;/param-name&gt;
+            &lt;param-value&gt;20&lt;/param-value&gt;
+        &lt;/init-param&gt;
+    &lt;/filter&gt;
+
+    &lt;filter-mapping&gt;
+        &lt;filter-name&gt;RateLimitFilter Login&lt;/filter-name&gt;
+        &lt;url-pattern&gt;/auth/*&lt;/url-pattern&gt;
+    &lt;/filter-mapping&gt;</code></pre></div>
 
   </div></div>
 
@@ -1101,21 +1218,20 @@ FINE: Request "/docs/config/manager.html" with response status "200"
   </div></div>
 
   <div class="subsection"><h4 id="Remote_CIDR_Filter/Example">Example</h4><div class="text">
-    <p>To allow access only for the clients connecting from localhost:</p>
-    <pre>
-      &lt;filter&gt;
-      &lt;filter-name&gt;Remote CIDR Filter&lt;/filter-name&gt;
-      &lt;filter-class&gt;org.apache.catalina.filters.RemoteCIDRFilter&lt;/filter-class&gt;
-      &lt;init-param&gt;
-      &lt;param-name&gt;allow&lt;/param-name&gt;
-      &lt;param-value&gt;127.0.0.0/8, ::1&lt;/param-value&gt;
-      &lt;/init-param&gt;
+    <p>To allow access only for the clients connecting from localhost and from local network 192.68.0.*:</p>
+    <div class="codeBox"><pre><code>      &lt;filter&gt;
+        &lt;filter-name&gt;Remote CIDR Filter&lt;/filter-name&gt;
+        &lt;filter-class&gt;org.apache.catalina.filters.RemoteCIDRFilter&lt;/filter-class&gt;
+        &lt;init-param&gt;
+          &lt;param-name&gt;allow&lt;/param-name&gt;
+          &lt;param-value&gt;127.0.0.1, ::1, 192.68.0.0/24&lt;/param-value&gt;
+        &lt;/init-param&gt;
       &lt;/filter&gt;
+
       &lt;filter-mapping&gt;
-      &lt;filter-name&gt;Remote CIDR Filter&lt;/filter-name&gt;
-      &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
-      &lt;/filter-mapping&gt;
-    </pre>
+        &lt;filter-name&gt;Remote CIDR Filter&lt;/filter-name&gt;
+        &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+      &lt;/filter-mapping&gt;</code></pre></div>
   </div></div>
 
 </div><h3 id="Remote_IP_Filter">Remote IP Filter</h3><div class="text">
@@ -1601,12 +1717,12 @@ org.apache.catalina.filters.RequestDumperFilter.handlers = \
 </div><h3 id="Session_Initializer_Filter">Session Initializer Filter</h3><div class="text">
 
   <div class="subsection"><h4 id="Session_Initializer_Filter/Introduction">Introduction</h4><div class="text">
-    <p>The Session Initializer Filter initializes the <code>javax.servlet.http.HttpSession</code>
+    <p>The Session Initializer Filter initializes the <code>jakarta.servlet.http.HttpSession</code>
     before the Request is processed.  This is required for JSR-356 compliant WebSocket implementations,
     if the <code>HttpSession</code> is needed during the HandShake phase.</p>
 
     <p>The Java API for WebSocket does not mandate that an <code>HttpSession</code> would
-    be initialized upon request, and thus <code>javax.servlet.http.HttpServletRequest</code>'s
+    be initialized upon request, and thus <code>jakarta.servlet.http.HttpServletRequest</code>'s
     <code>getSession()</code> returns <code>null</code> if the <code>HttpSession</code> was not
     initialized in advance.</p>
 

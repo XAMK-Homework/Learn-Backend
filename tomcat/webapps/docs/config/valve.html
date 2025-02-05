@@ -1,8 +1,8 @@
 <!DOCTYPE html SYSTEM "about:legacy-compat">
-<html lang="en"><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8"><link href="../images/docs-stylesheet.css" rel="stylesheet" type="text/css"><title>Apache Tomcat 8 Configuration Reference (8.5.87) - The Valve Component</title><meta name="author" content="Craig R. McClanahan"></head><body><div id="wrapper"><header><div id="header"><div><div><div class="logo noPrint"><a href="https://tomcat.apache.org/"><img alt="Tomcat Home" src="../images/tomcat.png"></a></div><div style="height: 1px;"></div><div class="asfLogo noPrint"><a href="https://www.apache.org/" target="_blank"><img src="../images/asf-logo.svg" alt="The Apache Software Foundation" style="width: 266px; height: 83px;"></a></div><h1>Apache Tomcat 8 Configuration Reference</h1><div class="versionInfo">
-            Version 8.5.87,
-            <time datetime="2023-02-27">Feb 27 2023</time></div><div style="height: 1px;"></div><div style="clear: left;"></div></div></div></div></header><div id="middle"><div><div id="mainLeft" class="noprint"><div><nav><div><h2>Links</h2><ul><li><a href="../index.html">Docs Home</a></li><li><a href="index.html">Config Ref. Home</a></li><li><a href="https://cwiki.apache.org/confluence/display/TOMCAT/FAQ">FAQ</a></li><li><a href="#comments_section">User Comments</a></li></ul></div><div><h2>Top Level Elements</h2><ul><li><a href="server.html">Server</a></li><li><a href="service.html">Service</a></li></ul></div><div><h2>Executors</h2><ul><li><a href="executor.html">Executor</a></li></ul></div><div><h2>Connectors</h2><ul><li><a href="http.html">HTTP/1.1</a></li><li><a href="http2.html">HTTP/2</a></li><li><a href="ajp.html">AJP</a></li></ul></div><div><h2>Containers</h2><ul><li><a href="context.html">Context</a></li><li><a href="engine.html">Engine</a></li><li><a href="host.html">Host</a></li><li><a href="cluster.html">Cluster</a></li></ul></div><div><h2>Nested Components</h2><ul><li><a href="cookie-processor.html">CookieProcessor</a></li><li><a href="credentialhandler.html">CredentialHandler</a></li><li><a href="globalresources.html">Global Resources</a></li><li><a href="jar-scanner.html">JarScanner</a></li><li><a href="jar-scan-filter.html">JarScanFilter</a></li><li><a href="listeners.html">Listeners</a></li><li><a href="loader.html">Loader</a></li><li><a href="manager.html">Manager</a></li><li><a href="realm.html">Realm</a></li><li><a href="resources.html">Resources</a></li><li><a href="sessionidgenerator.html">SessionIdGenerator</a></li><li><a href="valve.html">Valve</a></li></ul></div><div><h2>Cluster Elements</h2><ul><li><a href="cluster.html">Cluster</a></li><li><a href="cluster-manager.html">Manager</a></li><li><a href="cluster-channel.html">Channel</a></li><li><a href="cluster-membership.html">Channel/Membership</a></li><li><a href="cluster-sender.html">Channel/Sender</a></li><li><a href="cluster-receiver.html">Channel/Receiver</a></li><li><a href="cluster-interceptor.html">Channel/Interceptor</a></li><li><a href="cluster-valve.html">Valve</a></li><li><a href="cluster-deployer.html">Deployer</a></li><li><a href="cluster-listener.html">ClusterListener</a></li></ul></div><div><h2>web.xml</h2><ul><li><a href="filter.html">Filter</a></li></ul></div><div><h2>Other</h2><ul><li><a href="systemprops.html">System properties</a></li><li><a href="jaspic.html">JASPIC</a></li></ul></div></nav></div></div><div id="mainRight"><div id="content"><h2>The Valve Component</h2><h3 id="Table_of_Contents">Table of Contents</h3><div class="text">
-<ul><li><a href="#Introduction">Introduction</a></li><li><a href="#Access_Logging">Access Logging</a><ol><li><a href="#Access_Log_Valve">Access Log Valve</a><ol><li><a href="#Access_Log_Valve/Introduction">Introduction</a></li><li><a href="#Access_Log_Valve/Attributes">Attributes</a></li></ol></li><li><a href="#Extended_Access_Log_Valve">Extended Access Log Valve</a><ol><li><a href="#Extended_Access_Log_Valve/Introduction">Introduction</a></li><li><a href="#Extended_Access_Log_Valve/Attributes">Attributes</a></li></ol></li></ol></li><li><a href="#Access_Control">Access Control</a><ol><li><a href="#Remote_Address_Valve">Remote Address Valve</a><ol><li><a href="#Remote_Address_Valve/Introduction">Introduction</a></li><li><a href="#Remote_Address_Valve/Attributes">Attributes</a></li><li><a href="#Remote_Address_Valve/Example_localhost">Example 1</a></li><li><a href="#Remote_Address_Valve/Example_localhost_port">Example 2</a></li><li><a href="#Remote_Address_Valve/Example_port_auth">Example 3</a></li></ol></li><li><a href="#Remote_Host_Valve">Remote Host Valve</a><ol><li><a href="#Remote_Host_Valve/Introduction">Introduction</a></li><li><a href="#Remote_Host_Valve/Attributes">Attributes</a></li></ol></li><li><a href="#Remote_CIDR_Valve">Remote CIDR Valve</a><ol><li><a href="#Remote_CIDR_Valve/Introduction">Introduction</a></li><li><a href="#Remote_CIDR_Valve/Attributes">Attributes</a></li><li><a href="#Remote_CIDR_Valve/Example_localhost">Example 1</a></li><li><a href="#Remote_CIDR_Valve/Example_localhost_port">Example 2</a></li><li><a href="#Remote_CIDR_Valve/Example_port_auth">Example 3</a></li></ol></li></ol></li><li><a href="#Proxies_Support">Proxies Support</a><ol><li><a href="#Load_Balancer_Draining_Valve">Load Balancer Draining Valve</a><ol><li><a href="#Load_Balancer_Draining_Valve/Introduction">Introduction</a></li><li><a href="#Load_Balancer_Draining_Valve/Attributes">Attributes</a></li></ol></li><li><a href="#Remote_IP_Valve">Remote IP Valve</a><ol><li><a href="#Remote_IP_Valve/Introduction">Introduction</a></li><li><a href="#Remote_IP_Valve/Attributes">Attributes</a></li></ol></li><li><a href="#SSL_Valve">SSL Valve</a><ol><li><a href="#SSL_Valve/Introduction">Introduction</a></li><li><a href="#SSL_Valve/Attributes">Attributes</a></li></ol></li></ol></li><li><a href="#Single_Sign_On_Valve">Single Sign On Valve</a><ol><li><a href="#Single_Sign_On_Valve/Introduction">Introduction</a></li><li><a href="#Single_Sign_On_Valve/Attributes">Attributes</a></li></ol></li><li><a href="#Authentication">Authentication</a><ol><li><a href="#Basic_Authenticator_Valve">Basic Authenticator Valve</a><ol><li><a href="#Basic_Authenticator_Valve/Introduction">Introduction</a></li><li><a href="#Basic_Authenticator_Valve/Attributes">Attributes</a></li></ol></li><li><a href="#Digest_Authenticator_Valve">Digest Authenticator Valve</a><ol><li><a href="#Digest_Authenticator_Valve/Introduction">Introduction</a></li><li><a href="#Digest_Authenticator_Valve/Attributes">Attributes</a></li></ol></li><li><a href="#Form_Authenticator_Valve">Form Authenticator Valve</a><ol><li><a href="#Form_Authenticator_Valve/Introduction">Introduction</a></li><li><a href="#Form_Authenticator_Valve/Attributes">Attributes</a></li></ol></li><li><a href="#SSL_Authenticator_Valve">SSL Authenticator Valve</a><ol><li><a href="#SSL_Authenticator_Valve/Introduction">Introduction</a></li><li><a href="#SSL_Authenticator_Valve/Attributes">Attributes</a></li></ol></li><li><a href="#SPNEGO_Valve">SPNEGO Valve</a><ol><li><a href="#SPNEGO_Valve/Introduction">Introduction</a></li><li><a href="#SPNEGO_Valve/Attributes">Attributes</a></li></ol></li></ol></li><li><a href="#Error_Report_Valve">Error Report Valve</a><ol><li><a href="#Error_Report_Valve/Introduction">Introduction</a></li><li><a href="#Error_Report_Valve/Attributes">Attributes</a></li></ol></li><li><a href="#Json_Error_Report_Valve">Json Error Report Valve</a><ol><li><a href="#Json_Error_Report_Valve/Introduction">Introduction</a></li><li><a href="#Json_Error_Report_Valve/Attributes">Attributes</a></li></ol></li><li><a href="#Proxy_Error_Report_Valve">Proxy Error Report Valve</a><ol><li><a href="#Proxy_Error_Report_Valve/Introduction">Introduction</a></li><li><a href="#Proxy_Error_Report_Valve/Attributes">Attributes</a></li><li><a href="#Configuration">Configuration</a></li></ol></li><li><a href="#Crawler_Session_Manager_Valve">Crawler Session Manager Valve</a><ol><li><a href="#Crawler_Session_Manager_Valve/Introduction">Introduction</a></li><li><a href="#Crawler_Session_Manager_Valve/Attributes">Attributes</a></li></ol></li><li><a href="#Stuck_Thread_Detection_Valve">Stuck Thread Detection Valve</a><ol><li><a href="#Stuck_Thread_Detection_Valve/Introduction">Introduction</a></li><li><a href="#Stuck_Thread_Detection_Valve/Attributes">Attributes</a></li></ol></li><li><a href="#Semaphore_Valve">Semaphore Valve</a><ol><li><a href="#Semaphore_Valve/Introduction">Introduction</a></li><li><a href="#Semaphore_Valve/Attributes">Attributes</a></li></ol></li><li><a href="#Persistent_Valve">Persistent Valve</a><ol><li><a href="#Persistent_Valve/Introduction">Introduction</a></li><li><a href="#Persistent_Valve/Attributes">Attributes</a></li></ol></li></ul>
+<html lang="en"><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8"><link href="../images/docs-stylesheet.css" rel="stylesheet" type="text/css"><title>Apache Tomcat 8 Configuration Reference (8.5.96) - The Valve Component</title><meta name="author" content="Craig R. McClanahan"></head><body><div id="wrapper"><header><div id="header"><div><div><div class="logo noPrint"><a href="https://tomcat.apache.org/"><img alt="Tomcat Home" src="../images/tomcat.png"></a></div><div style="height: 1px;"></div><div class="asfLogo noPrint"><a href="https://www.apache.org/" target="_blank"><img src="../images/asf-logo.svg" alt="The Apache Software Foundation" style="width: 266px; height: 83px;"></a></div><h1>Apache Tomcat 8 Configuration Reference</h1><div class="versionInfo">
+            Version 8.5.96,
+            <time datetime="2023-11-10">Nov 10 2023</time></div><div style="height: 1px;"></div><div style="clear: left;"></div></div></div></div></header><div id="middle"><div><div id="mainLeft" class="noprint"><div><nav><div><h2>Links</h2><ul><li><a href="../index.html">Docs Home</a></li><li><a href="index.html">Config Ref. Home</a></li><li><a href="https://cwiki.apache.org/confluence/display/TOMCAT/FAQ">FAQ</a></li><li><a href="#comments_section">User Comments</a></li></ul></div><div><h2>Top Level Elements</h2><ul><li><a href="server.html">Server</a></li><li><a href="service.html">Service</a></li></ul></div><div><h2>Executors</h2><ul><li><a href="executor.html">Executor</a></li></ul></div><div><h2>Connectors</h2><ul><li><a href="http.html">HTTP/1.1</a></li><li><a href="http2.html">HTTP/2</a></li><li><a href="ajp.html">AJP</a></li></ul></div><div><h2>Containers</h2><ul><li><a href="context.html">Context</a></li><li><a href="engine.html">Engine</a></li><li><a href="host.html">Host</a></li><li><a href="cluster.html">Cluster</a></li></ul></div><div><h2>Nested Components</h2><ul><li><a href="cookie-processor.html">CookieProcessor</a></li><li><a href="credentialhandler.html">CredentialHandler</a></li><li><a href="globalresources.html">Global Resources</a></li><li><a href="jar-scanner.html">JarScanner</a></li><li><a href="jar-scan-filter.html">JarScanFilter</a></li><li><a href="listeners.html">Listeners</a></li><li><a href="loader.html">Loader</a></li><li><a href="manager.html">Manager</a></li><li><a href="realm.html">Realm</a></li><li><a href="resources.html">Resources</a></li><li><a href="sessionidgenerator.html">SessionIdGenerator</a></li><li><a href="valve.html">Valve</a></li></ul></div><div><h2>Cluster Elements</h2><ul><li><a href="cluster.html">Cluster</a></li><li><a href="cluster-manager.html">Manager</a></li><li><a href="cluster-channel.html">Channel</a></li><li><a href="cluster-membership.html">Channel/Membership</a></li><li><a href="cluster-sender.html">Channel/Sender</a></li><li><a href="cluster-receiver.html">Channel/Receiver</a></li><li><a href="cluster-interceptor.html">Channel/Interceptor</a></li><li><a href="cluster-valve.html">Valve</a></li><li><a href="cluster-deployer.html">Deployer</a></li><li><a href="cluster-listener.html">ClusterListener</a></li></ul></div><div><h2>web.xml</h2><ul><li><a href="filter.html">Filter</a></li></ul></div><div><h2>Other</h2><ul><li><a href="systemprops.html">System properties</a></li><li><a href="jaspic.html">JASPIC</a></li></ul></div></nav></div></div><div id="mainRight"><div id="content"><h2>The Valve Component</h2><h3 id="Table_of_Contents">Table of Contents</h3><div class="text">
+<ul><li><a href="#Introduction">Introduction</a></li><li><a href="#Access_Logging">Access Logging</a><ol><li><a href="#Access_Log_Valve">Access Log Valve</a><ol><li><a href="#Access_Log_Valve/Introduction">Introduction</a></li><li><a href="#Access_Log_Valve/Attributes">Attributes</a></li></ol></li><li><a href="#Extended_Access_Log_Valve">Extended Access Log Valve</a><ol><li><a href="#Extended_Access_Log_Valve/Introduction">Introduction</a></li><li><a href="#Extended_Access_Log_Valve/Attributes">Attributes</a></li></ol></li><li><a href="#JSON_Access_Log_Valve">JSON Access Log Valve</a><ol><li><a href="#JSON_Access_Log_Valve/Introduction">Introduction</a></li><li><a href="#JSON_Access_Log_Valve/Attributes">Attributes</a></li></ol></li></ol></li><li><a href="#Access_Control">Access Control</a><ol><li><a href="#Remote_Address_Valve">Remote Address Valve</a><ol><li><a href="#Remote_Address_Valve/Introduction">Introduction</a></li><li><a href="#Remote_Address_Valve/Attributes">Attributes</a></li><li><a href="#Remote_Address_Valve/Example_localhost">Example 1</a></li><li><a href="#Remote_Address_Valve/Example_localhost_port">Example 2</a></li><li><a href="#Remote_Address_Valve/Example_port_auth">Example 3</a></li></ol></li><li><a href="#Remote_Host_Valve">Remote Host Valve</a><ol><li><a href="#Remote_Host_Valve/Introduction">Introduction</a></li><li><a href="#Remote_Host_Valve/Attributes">Attributes</a></li></ol></li><li><a href="#Remote_CIDR_Valve">Remote CIDR Valve</a><ol><li><a href="#Remote_CIDR_Valve/Introduction">Introduction</a></li><li><a href="#Remote_CIDR_Valve/Attributes">Attributes</a></li><li><a href="#Remote_CIDR_Valve/Example_localhost">Example 1</a></li><li><a href="#Remote_CIDR_Valve/Example_localhost_port">Example 2</a></li><li><a href="#Remote_CIDR_Valve/Example_port_auth">Example 3</a></li></ol></li></ol></li><li><a href="#Proxies_Support">Proxies Support</a><ol><li><a href="#Load_Balancer_Draining_Valve">Load Balancer Draining Valve</a><ol><li><a href="#Load_Balancer_Draining_Valve/Introduction">Introduction</a></li><li><a href="#Load_Balancer_Draining_Valve/Attributes">Attributes</a></li></ol></li><li><a href="#Remote_IP_Valve">Remote IP Valve</a><ol><li><a href="#Remote_IP_Valve/Introduction">Introduction</a></li><li><a href="#Remote_IP_Valve/Attributes">Attributes</a></li></ol></li><li><a href="#SSL_Valve">SSL Valve</a><ol><li><a href="#SSL_Valve/Introduction">Introduction</a></li><li><a href="#SSL_Valve/Attributes">Attributes</a></li></ol></li></ol></li><li><a href="#Single_Sign_On_Valve">Single Sign On Valve</a><ol><li><a href="#Single_Sign_On_Valve/Introduction">Introduction</a></li><li><a href="#Single_Sign_On_Valve/Attributes">Attributes</a></li></ol></li><li><a href="#Authentication">Authentication</a><ol><li><a href="#Basic_Authenticator_Valve">Basic Authenticator Valve</a><ol><li><a href="#Basic_Authenticator_Valve/Introduction">Introduction</a></li><li><a href="#Basic_Authenticator_Valve/Attributes">Attributes</a></li></ol></li><li><a href="#Digest_Authenticator_Valve">Digest Authenticator Valve</a><ol><li><a href="#Digest_Authenticator_Valve/Introduction">Introduction</a></li><li><a href="#Digest_Authenticator_Valve/Attributes">Attributes</a></li></ol></li><li><a href="#Form_Authenticator_Valve">Form Authenticator Valve</a><ol><li><a href="#Form_Authenticator_Valve/Introduction">Introduction</a></li><li><a href="#Form_Authenticator_Valve/Attributes">Attributes</a></li></ol></li><li><a href="#SSL_Authenticator_Valve">SSL Authenticator Valve</a><ol><li><a href="#SSL_Authenticator_Valve/Introduction">Introduction</a></li><li><a href="#SSL_Authenticator_Valve/Attributes">Attributes</a></li></ol></li><li><a href="#SPNEGO_Valve">SPNEGO Valve</a><ol><li><a href="#SPNEGO_Valve/Introduction">Introduction</a></li><li><a href="#SPNEGO_Valve/Attributes">Attributes</a></li></ol></li></ol></li><li><a href="#Error_Report_Valve">Error Report Valve</a><ol><li><a href="#Error_Report_Valve/Introduction">Introduction</a></li><li><a href="#Error_Report_Valve/Attributes">Attributes</a></li></ol></li><li><a href="#Json_Error_Report_Valve">Json Error Report Valve</a><ol><li><a href="#Json_Error_Report_Valve/Introduction">Introduction</a></li><li><a href="#Json_Error_Report_Valve/Attributes">Attributes</a></li></ol></li><li><a href="#Proxy_Error_Report_Valve">Proxy Error Report Valve</a><ol><li><a href="#Proxy_Error_Report_Valve/Introduction">Introduction</a></li><li><a href="#Proxy_Error_Report_Valve/Attributes">Attributes</a></li><li><a href="#Configuration">Configuration</a></li></ol></li><li><a href="#Crawler_Session_Manager_Valve">Crawler Session Manager Valve</a><ol><li><a href="#Crawler_Session_Manager_Valve/Introduction">Introduction</a></li><li><a href="#Crawler_Session_Manager_Valve/Attributes">Attributes</a></li></ol></li><li><a href="#Stuck_Thread_Detection_Valve">Stuck Thread Detection Valve</a><ol><li><a href="#Stuck_Thread_Detection_Valve/Introduction">Introduction</a></li><li><a href="#Stuck_Thread_Detection_Valve/Attributes">Attributes</a></li></ol></li><li><a href="#Semaphore_Valve">Semaphore Valve</a><ol><li><a href="#Semaphore_Valve/Introduction">Introduction</a></li><li><a href="#Semaphore_Valve/Attributes">Attributes</a></li></ol></li><li><a href="#Persistent_Valve">Persistent Valve</a><ol><li><a href="#Persistent_Valve/Introduction">Introduction</a></li><li><a href="#Persistent_Valve/Attributes">Attributes</a></li></ol></li></ul>
 </div><h3 id="Introduction">Introduction</h3><div class="text">
 
   <p>A <strong>Valve</strong> element represents a component that will be
@@ -219,9 +219,14 @@
     <li><b><code>%A</code></b> - Local IP address</li>
     <li><b><code>%b</code></b> - Bytes sent, excluding HTTP headers, or '-' if zero</li>
     <li><b><code>%B</code></b> - Bytes sent, excluding HTTP headers</li>
+    <li><b><code>%D</code></b> - Time taken to process the request in millis. Note: In
+        httpd %D is microseconds. Behaviour will be aligned to httpd
+        in Tomcat 10 onwards.</li>
+    <li><b><code>%F</code></b> - Time taken to commit the response, in milliseconds</li>
     <li><b><code>%h</code></b> - Remote host name (or IP address if
         <code>enableLookups</code> for the connector is false)</li>
     <li><b><code>%H</code></b> - Request protocol</li>
+    <li><b><code>%I</code></b> - Current request thread name (can compare later with stacktraces)</li>
     <li><b><code>%l</code></b> - Remote logical username from identd (always returns
         '-')</li>
     <li><b><code>%m</code></b> - Request method (GET, POST, etc.)</li>
@@ -232,18 +237,13 @@
     <li><b><code>%s</code></b> - HTTP status code of the response</li>
     <li><b><code>%S</code></b> - User session ID</li>
     <li><b><code>%t</code></b> - Date and time, in Common Log Format</li>
-    <li><b><code>%u</code></b> - Remote user that was authenticated (if any), else '-' (escaped if required)</li>
-    <li><b><code>%U</code></b> - Requested URL path</li>
-    <li><b><code>%v</code></b> - Local server name</li>
-    <li><b><code>%D</code></b> - Time taken to process the request in millis. Note: In
-        httpd %D is microseconds. Behaviour will be aligned to httpd
-        in Tomcat 10 onwards.</li>
     <li><b><code>%T</code></b> - Time taken to process the request, in seconds. Note: This
         value has millisecond resolution whereas in httpd it has
         second resolution. Behaviour will be align to httpd
         in Tomcat 10 onwards.</li>
-    <li><b><code>%F</code></b> - Time taken to commit the response, in milliseconds</li>
-    <li><b><code>%I</code></b> - Current request thread name (can compare later with stacktraces)</li>
+    <li><b><code>%u</code></b> - Remote user that was authenticated (if any), else '-' (escaped if required)</li>
+    <li><b><code>%U</code></b> - Requested URL path</li>
+    <li><b><code>%v</code></b> - Local server name</li>
     <li><b><code>%X</code></b> - Connection status when response is completed:
       <ul>
         <li><code>X</code> = Connection aborted before the response completed.</li>
@@ -267,8 +267,8 @@
     <li><b><code>%{xxx}i</code></b> write value of incoming header with name <code>xxx</code> (escaped if required)</li>
     <li><b><code>%{xxx}o</code></b> write value of outgoing header with name <code>xxx</code> (escaped if required)</li>
     <li><b><code>%{xxx}c</code></b> write value of cookie(s) with name <code>xxx</code> (comma separated and escaped if required)</li>
-    <li><b><code>%{xxx}r</code></b> write value of ServletRequest attribute with name <code>xxx</code> (escaped if required)</li>
-    <li><b><code>%{xxx}s</code></b> write value of HttpSession attribute with name <code>xxx</code> (escaped if required)</li>
+    <li><b><code>%{xxx}r</code></b> write value of ServletRequest attribute with name <code>xxx</code> (escaped if required, value <code>??</code> if request is null)</li>
+    <li><b><code>%{xxx}s</code></b> write value of HttpSession attribute with name <code>xxx</code> (escaped if required, value <code>??</code> if request is null)</li>
     <li><b><code>%{xxx}p</code></b> write local (server) port (<code>xxx==local</code>) or
         remote (client) port (<code>xxx=remote</code>)</li>
     <li><b><code>%{xxx}t</code></b> write timestamp at the end of the request formatted using the
@@ -301,7 +301,7 @@
     <li><code>"</code> is escaped as <code>\"</code></li>
     <li><code>\</code> is escaped as <code>\\</code></li>
     <li>Standard C escaping are used for <code>\f</code>, <code>\n</code>,
-        <code>\r</code>, <code>\t</code> and <code>\v</code></li>
+        <code>\r</code> and <code>\t</code></li>
     <li>Any other control characters or characters with code points above 127
         are encoded using the standard Java unicode escaping
         (<code>\uXXXX</code>)</li>
@@ -314,6 +314,10 @@
     <p>The shorthand pattern <code>pattern="combined"</code>
     appends the values of the <code>Referer</code> and <code>User-Agent</code>
     headers, each in double quotes, to the <code>common</code> pattern.</p>
+
+    <p>Fields using unknown pattern identifiers will be logged as <code>???X???</code>
+    where <code>X</code> is the unknown identifier. Fields with unknown pattern identifier
+    plus <code>{xxx}</code> key will be logged as <code>???</code>.</p>
 
     <p>When Tomcat is operating behind a reverse proxy, the client information
     logged by the Access Log Valve may represent the reverse proxy, the browser
@@ -427,6 +431,105 @@
     <li><b><code>x-R(XXX)</code></b> for the request attribute with name XXX</li>
     <li><b><code>x-S(XXX)</code></b> for the session attribute with name XXX</li>
     </ul>
+
+  </div></div>
+
+</div></div>
+
+<div class="subsection"><h4 id="JSON_Access_Log_Valve">JSON Access Log Valve</h4><div class="text">
+
+  <div class="subsection"><h4 id="JSON_Access_Log_Valve/Introduction">Introduction</h4><div class="text">
+
+    <p>The <strong>JSON Access Log Valve</strong> extends the
+    <a href="#Access_Log_Valve">Access Log Valve</a>, and so
+    uses the same self-contained logging logic.  This means it
+    implements the same file handling attributes.  The main
+    difference to the standard <code>AccessLogValve</code> is that
+    <code>JsonAccessLogValve</code> creates log files which
+    follow the JSON syntax as defined by
+    <a href="https://www.rfc-editor.org/rfc/rfc8259.html">RFC 8259</a>.</p>
+
+  </div></div>
+
+  <div class="subsection"><h4 id="JSON_Access_Log_Valve/Attributes">Attributes</h4><div class="text">
+
+    <p>The <strong>JSON Access Log Valve</strong> supports all
+    configuration attributes of the standard
+    <a href="#Access_Log_Valve">Access Log Valve.</a> Only the
+    values used for <code>className</code> differ.</p>
+
+    <table class="defaultTable"><tr><th style="width: 15%;">
+          Attribute
+        </th><th style="width: 85%;">
+          Description
+        </th></tr><tr><td><strong><code class="attributeName">className</code></strong></td><td>
+        <p>Java class name of the implementation to use.  This MUST be set to
+        <strong>org.apache.catalina.valves.JsonAccessLogValve</strong> to
+        use the extended access log valve.</p>
+      </td></tr></table>
+
+    <p>While the patterns supported are the same as for the regular
+    <a href="#Access_Log_Valve">Access Log Valve</a>,
+    there are a few differences:
+    <ul>
+    <li>requests are logged as JSON objects.</li>
+    <li>each supported "%X" single character pattern
+        identifier results in a key value pair in this object.
+        See below for the list of keys used for the respective pattern
+        identifiers.</li>
+    <li>each pattern identifiers using a subkey of the form <code>%{xxx}X</code>
+        where "X" is one of "a", "p" or "t"
+        results in a key value pair of the form "key-xxx".
+        See below for the list of keys used for the respective pattern
+        identifiers.</li>
+    <li>each pattern identifiers using a subkey of the form <code>%{xxx}X</code>
+        where "X" is one of "c", "i", "o", "r" or "s"
+        results in a sub object. See below for the key pointing at this
+        sub object. The keys in the sub object are the "xxx" subkeys in the pattern.</li>
+    <li>each unsupported "%X" character pattern
+        identifier results in a key value pair using the key "other-X".</li>
+    <li>the values logged are the same as the ones logged by
+        the standard <a href="#Access_Log_Valve">Access Log Valve</a>
+        for the same pattern identifiers.</li>
+    <li>any "xxx" subkeys get Json escaped.</li>
+    <li>any verbatim text between pattern identifiers gets silently ignored.</li>
+    </ul>
+    The JSON object keys used for the pattern identifiers which
+    do not generate a sub object are the following:
+    <ul>
+    <li><b><code>%a</code></b>: remoteAddr</li>
+    <li><b><code>%A</code></b>: localAddr</li>
+    <li><b><code>%b</code></b>: size</li>
+    <li><b><code>%B</code></b>: byteSentNC</li>
+    <li><b><code>%D</code></b>: elapsedTime</li>
+    <li><b><code>%F</code></b>: firstByteTime</li>
+    <li><b><code>%h</code></b>: host</li>
+    <li><b><code>%H</code></b>: protocol</li>
+    <li><b><code>%I</code></b>: threadName</li>
+    <li><b><code>%l</code></b>: logicalUserName</li>
+    <li><b><code>%m</code></b>: method</li>
+    <li><b><code>%p</code></b>: port</li>
+    <li><b><code>%q</code></b>: query</li>
+    <li><b><code>%r</code></b>: request</li>
+    <li><b><code>%s</code></b>: statusCode</li>
+    <li><b><code>%S</code></b>: sessionId</li>
+    <li><b><code>%t</code></b>: time</li>
+    <li><b><code>%T</code></b>: elapsedTimeS</li>
+    <li><b><code>%u</code></b>: user</li>
+    <li><b><code>%U</code></b>: path</li>
+    <li><b><code>%v</code></b>: localServerName</li>
+    <li><b><code>%X</code></b>: connectionStatus</li>
+    </ul>
+    The JSON object keys used for the pattern identifiers which
+    generate a sub object are the following:
+    <ul>
+    <li><b><code>%c</code></b>: cookies</li>
+    <li><b><code>%i</code></b>: requestHeaders</li>
+    <li><b><code>%o</code></b>: responseHeaders</li>
+    <li><b><code>%r</code></b>: requestAttributes</li>
+    <li><b><code>%s</code></b>: sessionAttributes</li>
+    </ul>
+    </p>
 
   </div></div>
 
@@ -1225,6 +1328,12 @@
         <code>securePagesWithPragma</code> offers an alternative, secure,
         workaround for browser caching issues. If not set, the default value of
         <code>true</code> will be used.</p>
+      </td></tr><tr><td><code class="attributeName">jaspicCallbackHandlerClass</code></td><td>
+        <p>Name of the Java class of the
+        <code>javax.security.auth.callback.CallbackHandler</code> implementation
+        which should be used by JASPIC. If none is specified the default
+        <code>org.apache.catalina.authenticator.jaspic.CallbackHandlerImpl</code>
+        will be used.</p>
       </td></tr><tr><td><code class="attributeName">securePagesWithPragma</code></td><td>
         <p>Controls the caching of pages that are protected by security
         constraints. Setting this to <code>false</code> may help work around
@@ -1268,12 +1377,6 @@
         <p>Controls whether leading and/or trailing whitespace is removed from
         the parsed credentials. If not specified, the default value is
         <code>true</code>.</p>
-      </td></tr><tr><td><code class="attributeName">jaspicCallbackHandlerClass</code></td><td>
-        <p>Name of the Java class of the
-        <code>javax.security.auth.callback.CallbackHandler</code> implementation
-        which should be used by JASPIC. If none is specified the default
-        <code>org.apache.catalina.authenticator.jaspic.CallbackHandlerImpl</code>
-        will be used.</p>
       </td></tr></table>
 
   </div></div>
@@ -1304,7 +1407,12 @@
           Attribute
         </th><th style="width: 85%;">
           Description
-        </th></tr><tr><td><code class="attributeName">allowCorsPreflight</code></td><td>
+        </th></tr><tr><td><code class="attributeName">algorithms</code></td><td>
+        <p>A comma-separated list of digest algorithms to be used for the
+        authentication process. Algorithms may be specified using the Java
+        Standard names or the names used by RFC 7616. If not specified, the
+        default value of <code>SHA-256,MD5</code> will be used.</p>
+      </td></tr><tr><td><code class="attributeName">allowCorsPreflight</code></td><td>
         <p>Are requests that appear to be CORS preflight requests allowed to
         bypass the authenticator as required by the CORS specification. The
         allowed values are <code>never</code>, <code>filter</code> and
@@ -1346,6 +1454,12 @@
         <code>securePagesWithPragma</code> offers an alternative, secure,
         workaround for browser caching issues. If not set, the default value of
         <code>true</code> will be used.</p>
+      </td></tr><tr><td><code class="attributeName">jaspicCallbackHandlerClass</code></td><td>
+        <p>Name of the Java class of the
+        <code>javax.security.auth.callback.CallbackHandler</code> implementation
+        which should be used by JASPIC. If none is specified the default
+        <code>org.apache.catalina.authenticator.jaspic.CallbackHandlerImpl</code>
+        will be used.</p>
       </td></tr><tr><td><code class="attributeName">key</code></td><td>
         <p>The secret key used by digest authentication. If not set, a secure
         random value is generated. This should normally only be set when it is
@@ -1416,12 +1530,6 @@
         normally only be set when Tomcat is located behind a reverse proxy and
         the proxy is modifying the URI passed to Tomcat such that DIGEST
         authentication always fails.</p>
-      </td></tr><tr><td><code class="attributeName">jaspicCallbackHandlerClass</code></td><td>
-        <p>Name of the Java class of the
-        <code>javax.security.auth.callback.CallbackHandler</code> implementation
-        which should be used by JASPIC. If none is specified the default
-        <code>org.apache.catalina.authenticator.jaspic.CallbackHandlerImpl</code>
-        will be used.</p>
       </td></tr></table>
 
   </div></div>
@@ -1465,6 +1573,11 @@
         <code>always</code> means that all requests that appear to be CORS
         preflight requests will bypass authentication. If not set, the default
         value is <code>never</code>.</p>
+      </td></tr><tr><td><code class="attributeName">authenticationSessionTimeout</code></td><td>
+        <p>If the authentication process creates a session, this is the maximum session timeout (in seconds) during the
+        authentication process. Once authentication is complete, the default session timeout will apply. Sessions that
+        exist before the authentication process starts will retain their original session timeout throughout. If not
+        set, the default value of <code>120</code> seconds will be used.</p>
       </td></tr><tr><td><code class="attributeName">changeSessionIdOnAuthentication</code></td><td>
         <p>Controls if the session ID is changed if a session exists at the
         point where users are authenticated. This is to prevent session fixation
@@ -1485,6 +1598,12 @@
         <code>securePagesWithPragma</code> offers an alternative, secure,
         workaround for browser caching issues. If not set, the default value of
         <code>true</code> will be used.</p>
+      </td></tr><tr><td><code class="attributeName">jaspicCallbackHandlerClass</code></td><td>
+        <p>Name of the Java class of the
+        <code>javax.security.auth.callback.CallbackHandler</code> implementation
+        which should be used by JASPIC. If none is specified the default
+        <code>org.apache.catalina.authenticator.jaspic.CallbackHandlerImpl</code>
+        will be used.</p>
       </td></tr><tr><td><code class="attributeName">landingPage</code></td><td>
         <p>Controls the behavior of the FORM authentication process if the
         process is misused, for example by directly requesting the login page
@@ -1535,12 +1654,6 @@
         <code>remote-user</code> and <code>auth-type</code> to a reverse proxy.
         This is useful, e.g., for access log consistency or other decisions to make.
         If not specified, the default value is <code>false</code>.</p>
-      </td></tr><tr><td><code class="attributeName">jaspicCallbackHandlerClass</code></td><td>
-        <p>Name of the Java class of the
-        <code>javax.security.auth.callback.CallbackHandler</code> implementation
-        which should be used by JASPIC. If none is specified the default
-        <code>org.apache.catalina.authenticator.jaspic.CallbackHandlerImpl</code>
-        will be used.</p>
       </td></tr></table>
 
   </div></div>
@@ -1604,6 +1717,12 @@
         <code>securePagesWithPragma</code> offers an alternative, secure,
         workaround for browser caching issues. If not set, the default value of
         <code>true</code> will be used.</p>
+      </td></tr><tr><td><code class="attributeName">jaspicCallbackHandlerClass</code></td><td>
+        <p>Name of the Java class of the
+        <code>javax.security.auth.callback.CallbackHandler</code> implementation
+        which should be used by JASPIC. If none is specified the default
+        <code>org.apache.catalina.authenticator.jaspic.CallbackHandlerImpl</code>
+        will be used.</p>
       </td></tr><tr><td><code class="attributeName">securePagesWithPragma</code></td><td>
         <p>Controls the caching of pages that are protected by security
         constraints. Setting this to <code>false</code> may help work around
@@ -1632,12 +1751,6 @@
         session IDs. If an invalid algorithm and/or provider is specified, the
         platform default provider and the default algorithm will be used. If not
         specified, the platform default provider will be used.</p>
-      </td></tr><tr><td><code class="attributeName">jaspicCallbackHandlerClass</code></td><td>
-        <p>Name of the Java class of the
-        <code>javax.security.auth.callback.CallbackHandler</code> implementation
-        which should be used by JASPIC. If none is specified the default
-        <code>org.apache.catalina.authenticator.jaspic.CallbackHandlerImpl</code>
-        will be used.</p>
       </td></tr></table>
 
   </div></div>
@@ -1721,6 +1834,12 @@
         <code>securePagesWithPragma</code> offers an alternative, secure,
         workaround for browser caching issues. If not set, the default value of
         <code>true</code> will be used.</p>
+      </td></tr><tr><td><code class="attributeName">jaspicCallbackHandlerClass</code></td><td>
+        <p>Name of the Java class of the
+        <code>javax.security.auth.callback.CallbackHandler</code> implementation
+        which should be used by JASPIC. If none is specified the default
+        <code>org.apache.catalina.authenticator.jaspic.CallbackHandlerImpl</code>
+        will be used.</p>
       </td></tr><tr><td><code class="attributeName">loginConfigName</code></td><td>
         <p>The name of the JAAS login configuration to be used to login as the
         service. If not specified, the default of
@@ -1787,12 +1906,6 @@
         available to applications (e.g. for onward authentication to external
         services) via the <code>org.apache.catalina.realm.GSS_CREDENTIAL</code>
         request attribute. If not set, the default value of <code>true</code>
-        will be used.</p>
-      </td></tr><tr><td><code class="attributeName">jaspicCallbackHandlerClass</code></td><td>
-        <p>Name of the Java class of the
-        <code>javax.security.auth.callback.CallbackHandler</code> implementation
-        which should be used by JASPIC. If none is specified the default
-        <code>org.apache.catalina.authenticator.jaspic.CallbackHandlerImpl</code>
         will be used.</p>
       </td></tr></table>
 
@@ -2134,9 +2247,24 @@
         notify the valve that no session required during this request. If the
         request matches this filter pattern, the valve assumes there has been no
         need to restore session. An example filter would look like <code>
-        filter=".*\.gif|.*\.js|.*\.jpeg|.*\.jpg|.*\.png|.*\.htm|.*\.html|
-        .*\.css|.*\.txt"</code>. The filter is a regular expression using
+        filter=".*\.gif|.*\.js|.*\.jpeg|.*\.jpg|.*\.png|.*\.htm|.*\.html|.*\.css|.*\.txt"</code>.
+        The filter is a regular expression using
         <code>java.util.regex</code>.</p>
+      </td></tr><tr><td><code class="attributeName">semaphoreAcquireUninterruptibly</code></td><td>
+        <p>Flag to determine if a thread that blocks waiting for the per session
+        Semaphore should do so uninterruptibly. Has no effect if
+        <strong>semaphoreBlockOnAcquire</strong> is <code>false</code>. If not
+        specified, the default value of <code>true</code> will be used.</p>
+      </td></tr><tr><td><code class="attributeName">semaphoreBlockOnAcquire</code></td><td>
+        <p>Flag to determine if a thread that wishes to acquire the per session
+        Semaphore when it is held by another thread should block until it can
+        acquire the Semaphore or if the waiting request be rejected. If not
+        specified, the default value of <code>true</code> will be used.</p>
+      </td></tr><tr><td><code class="attributeName">semaphoreFairness</code></td><td>
+        <p>Flag to determine if the per session Semaphore will grant requests
+        for the Semaphore in the same order they were received. Has no effect if
+        <strong>semaphoreBlockOnAcquire</strong> is <code>false</code>. If not
+        specified, the default value of <code>true</code> will be used.</p>
       </td></tr></table>
 
   </div></div>

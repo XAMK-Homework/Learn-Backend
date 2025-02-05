@@ -1,7 +1,859 @@
 <!DOCTYPE html SYSTEM "about:legacy-compat">
-<html lang="en"><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8"><link href="./images/docs-stylesheet.css" rel="stylesheet" type="text/css"><title>Apache Tomcat 8 (8.5.87) - Changelog</title></head><body><div id="wrapper"><header><div id="header"><div><div><div class="logo noPrint"><a href="https://tomcat.apache.org/"><img alt="Tomcat Home" src="./images/tomcat.png"></a></div><div style="height: 1px;"></div><div class="asfLogo noPrint"><a href="https://www.apache.org/" target="_blank"><img src="./images/asf-logo.svg" alt="The Apache Software Foundation" style="width: 266px; height: 83px;"></a></div><h1>Apache Tomcat 8</h1><div class="versionInfo">
-            Version 8.5.87,
-            <time datetime="2023-02-27">Feb 27 2023</time></div><div style="height: 1px;"></div><div style="clear: left;"></div></div></div></div></header><div id="middle"><div><div id="mainLeft" class="noprint"><div><nav><div><h2>Links</h2><ul><li><a href="index.html">Docs Home</a></li><li><a href="https://cwiki.apache.org/confluence/display/TOMCAT/FAQ">FAQ</a></li><li><a href="#comments_section">User Comments</a></li></ul></div><div><h2>User Guide</h2><ul><li><a href="introduction.html">1) Introduction</a></li><li><a href="setup.html">2) Setup</a></li><li><a href="appdev/index.html">3) First webapp</a></li><li><a href="deployer-howto.html">4) Deployer</a></li><li><a href="manager-howto.html">5) Manager</a></li><li><a href="host-manager-howto.html">6) Host Manager</a></li><li><a href="realm-howto.html">7) Realms and AAA</a></li><li><a href="security-manager-howto.html">8) Security Manager</a></li><li><a href="jndi-resources-howto.html">9) JNDI Resources</a></li><li><a href="jndi-datasource-examples-howto.html">10) JDBC DataSources</a></li><li><a href="class-loader-howto.html">11) Classloading</a></li><li><a href="jasper-howto.html">12) JSPs</a></li><li><a href="ssl-howto.html">13) SSL/TLS</a></li><li><a href="ssi-howto.html">14) SSI</a></li><li><a href="cgi-howto.html">15) CGI</a></li><li><a href="proxy-howto.html">16) Proxy Support</a></li><li><a href="mbeans-descriptors-howto.html">17) MBeans Descriptors</a></li><li><a href="default-servlet.html">18) Default Servlet</a></li><li><a href="cluster-howto.html">19) Clustering</a></li><li><a href="balancer-howto.html">20) Load Balancer</a></li><li><a href="connectors.html">21) Connectors</a></li><li><a href="monitoring.html">22) Monitoring and Management</a></li><li><a href="logging.html">23) Logging</a></li><li><a href="apr.html">24) APR/Native</a></li><li><a href="virtual-hosting-howto.html">25) Virtual Hosting</a></li><li><a href="aio.html">26) Advanced IO</a></li><li><a href="extras.html">27) Additional Components</a></li><li><a href="maven-jars.html">28) Mavenized</a></li><li><a href="security-howto.html">29) Security Considerations</a></li><li><a href="windows-service-howto.html">30) Windows Service</a></li><li><a href="windows-auth-howto.html">31) Windows Authentication</a></li><li><a href="jdbc-pool.html">32) Tomcat's JDBC Pool</a></li><li><a href="web-socket-howto.html">33) WebSocket</a></li><li><a href="rewrite.html">34) Rewrite</a></li></ul></div><div><h2>Reference</h2><ul><li><a href="RELEASE-NOTES.txt">Release Notes</a></li><li><a href="config/index.html">Configuration</a></li><li><a href="api/index.html">Tomcat Javadocs</a></li><li><a href="servletapi/index.html">Servlet 4.0 Javadocs</a></li><li><a href="jspapi/index.html">JSP 2.3 Javadocs</a></li><li><a href="elapi/index.html">EL 3.0 Javadocs</a></li><li><a href="websocketapi/index.html">WebSocket 1.1 Javadocs</a></li><li><a href="jaspicapi/index.html">JASPIC 1.1 Javadocs</a></li><li><a href="annotationapi/index.html">Common Annotations 1.2 Javadocs</a></li><li><a href="https://tomcat.apache.org/connectors-doc/">JK 1.2 Documentation</a></li></ul></div><div><h2>Apache Tomcat Development</h2><ul><li><a href="building.html">Building</a></li><li><a href="changelog.html">Changelog</a></li><li><a href="https://cwiki.apache.org/confluence/display/TOMCAT/Tomcat+Versions">Status</a></li><li><a href="developers.html">Developers</a></li><li><a href="architecture/index.html">Architecture</a></li><li><a href="tribes/introduction.html">Tribes</a></li></ul></div></nav></div></div><div id="mainRight"><div id="content"><h2>Changelog</h2><h3 id="Tomcat_8.5.87_(schultz)"><span style="float: right;">Release in progress</span> Tomcat 8.5.87 (schultz)</h3><div class="text">
+<html lang="en"><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8"><link href="./images/docs-stylesheet.css" rel="stylesheet" type="text/css"><title>Apache Tomcat 8 (8.5.96) - Changelog</title></head><body><div id="wrapper"><header><div id="header"><div><div><div class="logo noPrint"><a href="https://tomcat.apache.org/"><img alt="Tomcat Home" src="./images/tomcat.png"></a></div><div style="height: 1px;"></div><div class="asfLogo noPrint"><a href="https://www.apache.org/" target="_blank"><img src="./images/asf-logo.svg" alt="The Apache Software Foundation" style="width: 266px; height: 83px;"></a></div><h1>Apache Tomcat 8</h1><div class="versionInfo">
+            Version 8.5.96,
+            <time datetime="2023-11-10">Nov 10 2023</time></div><div style="height: 1px;"></div><div style="clear: left;"></div></div></div></div></header><div id="middle"><div><div id="mainLeft" class="noprint"><div><nav><div><h2>Links</h2><ul><li><a href="index.html">Docs Home</a></li><li><a href="https://cwiki.apache.org/confluence/display/TOMCAT/FAQ">FAQ</a></li><li><a href="#comments_section">User Comments</a></li></ul></div><div><h2>User Guide</h2><ul><li><a href="introduction.html">1) Introduction</a></li><li><a href="setup.html">2) Setup</a></li><li><a href="appdev/index.html">3) First webapp</a></li><li><a href="deployer-howto.html">4) Deployer</a></li><li><a href="manager-howto.html">5) Manager</a></li><li><a href="host-manager-howto.html">6) Host Manager</a></li><li><a href="realm-howto.html">7) Realms and AAA</a></li><li><a href="security-manager-howto.html">8) Security Manager</a></li><li><a href="jndi-resources-howto.html">9) JNDI Resources</a></li><li><a href="jndi-datasource-examples-howto.html">10) JDBC DataSources</a></li><li><a href="class-loader-howto.html">11) Classloading</a></li><li><a href="jasper-howto.html">12) JSPs</a></li><li><a href="ssl-howto.html">13) SSL/TLS</a></li><li><a href="ssi-howto.html">14) SSI</a></li><li><a href="cgi-howto.html">15) CGI</a></li><li><a href="proxy-howto.html">16) Proxy Support</a></li><li><a href="mbeans-descriptors-howto.html">17) MBeans Descriptors</a></li><li><a href="default-servlet.html">18) Default Servlet</a></li><li><a href="cluster-howto.html">19) Clustering</a></li><li><a href="balancer-howto.html">20) Load Balancer</a></li><li><a href="connectors.html">21) Connectors</a></li><li><a href="monitoring.html">22) Monitoring and Management</a></li><li><a href="logging.html">23) Logging</a></li><li><a href="apr.html">24) APR/Native</a></li><li><a href="virtual-hosting-howto.html">25) Virtual Hosting</a></li><li><a href="aio.html">26) Advanced IO</a></li><li><a href="extras.html">27) Additional Components</a></li><li><a href="maven-jars.html">28) Mavenized</a></li><li><a href="security-howto.html">29) Security Considerations</a></li><li><a href="windows-service-howto.html">30) Windows Service</a></li><li><a href="windows-auth-howto.html">31) Windows Authentication</a></li><li><a href="jdbc-pool.html">32) Tomcat's JDBC Pool</a></li><li><a href="web-socket-howto.html">33) WebSocket</a></li><li><a href="rewrite.html">34) Rewrite</a></li></ul></div><div><h2>Reference</h2><ul><li><a href="RELEASE-NOTES.txt">Release Notes</a></li><li><a href="config/index.html">Configuration</a></li><li><a href="api/index.html">Tomcat Javadocs</a></li><li><a href="servletapi/index.html">Servlet 3.1 Javadocs</a></li><li><a href="jspapi/index.html">JSP 2.3 Javadocs</a></li><li><a href="elapi/index.html">EL 3.0 Javadocs</a></li><li><a href="websocketapi/index.html">WebSocket 1.1 Javadocs</a></li><li><a href="jaspicapi/index.html">JASPIC 1.1 Javadocs</a></li><li><a href="annotationapi/index.html">Common Annotations 1.2 Javadocs</a></li><li><a href="https://tomcat.apache.org/connectors-doc/">JK 1.2 Documentation</a></li></ul></div><div><h2>Apache Tomcat Development</h2><ul><li><a href="building.html">Building</a></li><li><a href="changelog.html">Changelog</a></li><li><a href="https://cwiki.apache.org/confluence/display/TOMCAT/Tomcat+Versions">Status</a></li><li><a href="developers.html">Developers</a></li><li><a href="architecture/index.html">Architecture</a></li><li><a href="tribes/introduction.html">Tribes</a></li></ul></div></nav></div></div><div id="mainRight"><div id="content"><h2>Changelog</h2><h3 id="Tomcat_8.5.96_(schultz)"><span id="Tomcat_8.5.96_(schultz)_rtext" style="float: right;"></span> Tomcat 8.5.96 (schultz)</h3><div class="text">
+  <div class="subsection"><h4 id="Tomcat_8.5.96_(schultz)/Catalina">Catalina</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=67667">67667</a>: <code>TLSCertificateReloadListener</code> prints
+        unreadable rendering of <code>X509Certificate#getNotAfter()</code>.
+        (michaelo)
+      </li>
+      <li><img alt="Update: " class="icon" src="./images/update.gif">
+        The status servlet included in the manager webapp can now output
+        statistics as JSON, using the <code>JSON=true</code> URL parameter.
+        (remm)
+      </li>
+      <li><img alt="Update: " class="icon" src="./images/update.gif">
+        Optionally allow ServiceBindingPropertySource to trim a trailing newline
+        from a file containing a property-value. (schultz)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=67793">67793</a>: Ensure the original session timeout is restored after
+        FORM authentication if the user refreshes a page during the FORM
+        authentication process. Based on a suggestion by Mircea Butmalai.
+        (markt)
+      </li>
+      <li><img alt="Update: " class="icon" src="./images/update.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=67926">67926</a>: <code>PEMFile</code> prints unidentifiable string
+        representation of ASN.1 OIDs. (michaelo)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=66875">66875</a>: Ensure that setting the request attribute
+        <code>jakarta.servlet.error.exception</code> is not sufficient to
+        trigger error handling for the current request and response. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=68054">68054</a>: Avoid some file canonicalization calls introduced
+        by the fix for <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=65433">65433</a>. (remm)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=68089">68089</a>: Improve performance of request attribute access for
+        <code>ApplicationHttpRequest</code> and <code>ApplicationRequest</code>.
+        (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        Use a 400 status code to report an error due to a bad request (e.g. an
+        invalid trailer header) rather than a 500 status code. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        Ensure that an <code>IOException</code> during the reading of the
+        request triggers always error handling, regardless of whether the
+        application swallows the exception. (markt)
+      </li>
+    </ul>
+  </div></div>
+  <div class="subsection"><h4 id="Tomcat_8.5.96_(schultz)/Coyote">Coyote</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Add: " class="icon" src="./images/add.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=66670">66670</a>: Add
+        <code>SSLHostConfig#certificateKeyPasswordFile</code> and
+        <code>SSLHostConfig#certificateKeystorePasswordFile</code>. (michaelo)
+      </li>
+      <li><img alt="Add: " class="icon" src="./images/add.gif">
+        When calling
+        <code>SSLHostConfigCertificate.setCertificateKeystore(ks)</code>,
+        automatically call
+        <code>setCertificateKeystoreType(ks.getType())</code>. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=67628">67628</a>: Clarify how the <code>ciphers</code> attribute of the
+        <code>SSLHostConfig</code> is used. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=67666">67666</a>: Ensure TLS connectors using PEM files either work with
+        the <code>TLSCertificateReloadListener</code> or, in the rare case that
+        they do not, log a warning on Connector start. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=67675">67675</a>: Support a wider range of KDF and ciphers for PEM files
+        than the combinations supported by the JVM by default. Specifically,
+        support the OpenSSL default of HmacSHA256 and DES-EDE3-CBC. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=67927">67927</a>: Reloading TLS configuration can cause the Connector to
+        refuse new connections or the JVM to crash. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=67934">67934</a>: If both Tomcat Native 1.2.x and 2.0.x are available,
+        prefer 1.2.x since it supports the APR/Native connector whereas 2.0.x
+        does not. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=67938">67938</a>: Correct handling of large TLS client hello messages
+        that were causing the TLS handshake to fail. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=68026">68026</a>: Convert selected <code>MessageByte</code> values to
+        String when first accessed to speed up subsequent accesses and reduce
+        garbage collection. (markt)
+      </li>
+    </ul>
+  </div></div>
+  <div class="subsection"><h4 id="Tomcat_8.5.96_(schultz)/Jasper">Jasper</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=68068">68068</a>: Performance improvement for EL. Based on a suggestion
+        by John Engebretson. (markt)
+      </li>
+    </ul>
+  </div></div>
+  <div class="subsection"><h4 id="Tomcat_8.5.96_(schultz)/Other">Other</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Add: " class="icon" src="./images/add.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=67538">67538</a>: Make use of Ant's <code>&lt;javaversion /&gt;</code> task
+        to enfore the mininum Java build version. (michaelo)
+      </li>
+      <li><img alt="Update: " class="icon" src="./images/update.gif">
+        Update Checkstyle to 10.12.4. (markt)
+      </li>
+      <li><img alt="Update: " class="icon" src="./images/update.gif">
+        Update JaCoCo to 0.8.11. (markt)
+      </li>
+      <li><img alt="Update: " class="icon" src="./images/update.gif">
+        Update SpotBugs to 4.8.0. (markt)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Tomcat_8.5.95_(schultz)"><span id="Tomcat_8.5.95_(schultz)_rtext" style="float: right;">2023-10-16</span> Tomcat 8.5.95 (schultz)</h3><div class="text">
+  <div class="subsection"><h4 id="Tomcat_8.5.95_(schultz)/Coyote">Coyote</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=67670">67670</a>: Fix regression with HTTP compression after code
+        refactoring. (remm)
+      </li>
+    </ul>
+  </div></div>
+  <div class="subsection"><h4 id="Tomcat_8.5.95_(schultz)/jdbc-pool">jdbc-pool</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=67664">67664</a>: Correct a regression in the clean-up of unnecessary
+        use of fully qualified class names in 8.5.94 that broke the jdbc-pool.
+        (markt)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Tomcat_8.5.94_(schultz)"><span id="Tomcat_8.5.94_(schultz)_rtext" style="float: right;">2023-10-10</span> Tomcat 8.5.94 (schultz)</h3><div class="text">
+  <div class="subsection"><h4 id="Tomcat_8.5.94_(schultz)/Catalina">Catalina</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Add: " class="icon" src="./images/add.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=65770">65770</a>: Provide a lifecycle listener that will automatically
+        reload TLS configurations a set time before the certificate is due to
+        expire. This is intended to be used with third-party tools that
+        regularly renew TLS certificates. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        Fix handling of an error reading a context descriptor on deployment.
+        (remm)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        Fix rewrite rule qsd (query string discard) being ignored if qsa was
+        also use, while it should instead take precedence. (remm)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=67472">67472</a>: Send fewer CORS-related headers when CORS is not
+        actually being engaged. (schultz)
+      </li>
+      <li><img alt="Add: " class="icon" src="./images/add.gif">
+        Improve handling of failures within <code>recycle()</code> methods.
+        (markt)
+      </li>
+    </ul>
+  </div></div>
+  <div class="subsection"><h4 id="Tomcat_8.5.94_(schultz)/Coyote">Coyote</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=67198">67198</a>: Ensure that the AJP connector attribute
+        <code>tomcatAuthorization</code> takes precedence over the
+        <code>tomcatAuthentication</code> attribute when processing an
+        <code>auth_type</code> attribute received from a proxy server. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=67235">67235</a>: Fix a <code>NullPointerException</code> when an
+        <code>AsyncListener</code> handles an error with a dispatch rather than
+        a complete. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        When an error occurs during asynchronous processing, ensure that the
+        error handling process is only triggered once per asynchronous cycle.
+        (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        Fix logic issue trying to match no argument method in IntropectionUtil.
+        (remm)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        Improve thread safety around readNotify and writeNotify in the NIO2
+        endpoint. (remm)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        Avoid rare thread safety issue accessing message digest map. (remm)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        Align validation of HTTP trailer fields with standard fields. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        Improvements to HTTP/2 overhead protection. (markt)
+      </li>
+    </ul>
+  </div></div>
+  <div class="subsection"><h4 id="Tomcat_8.5.94_(schultz)/Jasper">Jasper</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=67080">67080</a>: Improve performance of EL expressions in JSPs that use
+        implicit objects. Based on suggestions by John Engebretson, Anurag Dubey
+        and Christopher Schultz. (markt)
+      </li>
+    </ul>
+  </div></div>
+  <div class="subsection"><h4 id="Tomcat_8.5.94_(schultz)/Other">Other</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Update: " class="icon" src="./images/update.gif">
+        Update the internal fork of Apache Commons FileUpload to 7a8c324
+        (2023-09-16, 1.x-SNAPSHOT). Due to significant refactoring in the 2.x
+        branch requiring additional Commons IO dependencies, Tomcat has switched
+        to tracking the 1.x branch. (markt)
+      </li>
+      <li><img alt="Update: " class="icon" src="./images/update.gif">
+        Update UnboundID to 6.0.9. (markt)
+      </li>
+      <li><img alt="Update: " class="icon" src="./images/update.gif">
+        Update Checkstyle to 10.12.3. (markt)
+      </li>
+      <li><img alt="Update: " class="icon" src="./images/update.gif">
+        Update Tomcat Native to 1.2.39 to pick up Windows binaries built with
+        OpenSSL 3.0.11. (markt)
+      </li>
+      <li><img alt="Add: " class="icon" src="./images/add.gif">
+        Improvements to French translations. (remm)
+      </li>
+      <li><img alt="Add: " class="icon" src="./images/add.gif">
+        Improvements to Japanese translations by tak7iji. (markt)
+      </li>
+      <li><img alt="Add: " class="icon" src="./images/add.gif">
+        Improvements to Russian translations by usmazat. (markt)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Tomcat_8.5.93_(markt)"><span id="Tomcat_8.5.93_(markt)_rtext" style="float: right;">2023-08-25</span> Tomcat 8.5.93 (markt)</h3><div class="text">
+  <div class="subsection"><h4 id="Tomcat_8.5.93_(markt)/Catalina">Catalina</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        If an application or library sets both a non-500 error code and the
+        <code>javax.servlet.error.exception</code> request attribute, use the
+        provided error code during error page processing rather than assuming an
+        error code of 500. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        Update code comments and Tomcat output to use MiB for 1024 * 1024 bytes
+        and KiB for 1024 bytes rather than MB and kB. (martk)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        Avoid protocol relative redirects in FORM authentication. (markt)
+      </li>
+    </ul>
+  </div></div>
+  <div class="subsection"><h4 id="Tomcat_8.5.93_(markt)/Web_applications">Web applications</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        Documentation. Update documentation to use MiB for 1024 * 1024 bytes and
+        KiB for 1024 bytes rather than MB and kB. (martk)
+      </li>
+    </ul>
+  </div></div>
+  <div class="subsection"><h4 id="Tomcat_8.5.93_(markt)/Other">Other</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Add: " class="icon" src="./images/add.gif">
+        Improvements to Chinese translations. (lihan)
+      </li>
+      <li><img alt="Add: " class="icon" src="./images/add.gif">
+        Improvements to French translations. (remm)
+      </li>
+      <li><img alt="Add: " class="icon" src="./images/add.gif">
+        Improvements to Japanese translations by tak7iji. (markt)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Tomcat_8.5.92_(markt)"><span id="Tomcat_8.5.92_(markt)_rtext" style="float: right;">2023-08-14</span> Tomcat 8.5.92 (markt)</h3><div class="text">
+  <div class="subsection"><h4 id="Tomcat_8.5.92_(markt)/Catalina">Catalina</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        Align documentation for maxParameterCount to match hard-coded defaults.
+        Contributed by Michal Sobkiewicz. (schultz)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=66680">66680</a>: When serializing a session during the session
+        presistence process, do not log a warning that null Principals are not
+        serializable. Pull request <a href="https://github.com/apache/tomcat/pull/638">#638</a> provided by tsryo. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        Catch <code>NamingException</code> in <code>JNDIRealm#getPrincipal</code>.
+        It is used in Java up to 17 to signal closed connections. (fschumacher)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=66822">66822</a>: Use the same naming format in log messages for
+        Connector instances as the associated ProtocolHandler instance. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        The parts count should also lower the actual
+        <code>maxParameterCount</code> used for parsing parameters if parts are
+        parsed first. (remm)
+      </li>
+    </ul>
+  </div></div>
+  <div class="subsection"><h4 id="Tomcat_8.5.92_(markt)/Coyote">Coyote</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        Correct a regression introduced in 8.5.91 and use the correct
+        constant when constructing the default value for the
+        <code>certificateKeystoreFile</code> attribute of an
+        <code>SSLHostConfigCertificate</code> instance. (markt)
+      </li>
+      <li><img alt="Code: " class="icon" src="./images/code.gif">
+        Refactor HTTP/2 implementation to reduce pinning when using virtual
+        threads. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=66841">66841</a>: Ensure that <code>AsyncListener.onError()</code> is
+        called after an error during asynchronous processing with HTTP/2.
+        (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        Correct a race condition that could cause spurious RST messages to be
+        sent after the response had been written to an HTTP/2 stream. (markt)
+      </li>
+    </ul>
+  </div></div>
+  <div class="subsection"><h4 id="Tomcat_8.5.92_(markt)/WebSocket">WebSocket</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=66681">66681</a>: Fix a <code>NullPointerException</code> when flushing
+        batched messages with compression enabled using
+        <code>permessage-deflate</code>. (markt)
+      </li>
+    </ul>
+  </div></div>
+  <div class="subsection"><h4 id="Tomcat_8.5.92_(markt)/jdbc-pool">jdbc-pool</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        Fix the <code>releaseIdleCounter</code> does not increment when testAllIdle
+        releases them. Pull request <a href="https://github.com/apache/tomcat/pull/241">#241</a> provided by Arun Chaitanya Miriappalli
+        (lihan)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        Fix the <code>ConnectionState</code> state will be inconsistent with actual
+        state on the connection when an exception occurs while writing. Pull request
+        <a href="https://github.com/apache/tomcat/pull/643">#643</a> provided by Wenjun Xiao. (lihan)
+      </li>
+    </ul>
+  </div></div>
+  <div class="subsection"><h4 id="Tomcat_8.5.92_(markt)/Other">Other</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Update: " class="icon" src="./images/update.gif">
+        Update NSIS to 3.0.9. (markt)
+      </li>
+      <li><img alt="Update: " class="icon" src="./images/update.gif">
+        Update Checkstyle to 10.12.2. (markt)
+      </li>
+      <li><img alt="Add: " class="icon" src="./images/add.gif">
+        Improvements to French translations. (remm)
+      </li>
+      <li><img alt="Add: " class="icon" src="./images/add.gif">
+        Improvements to Japanese translations. Contributed by tak7iji and
+        Shirayuking. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=66829">66829</a>: Fix quoting so users can use the <code>_RUNJAVA</code>
+        environment variable as intended on Windows when the path to the Java
+        executable contains spaces. (markt)
+      </li>
+      <li><img alt="Update: " class="icon" src="./images/update.gif">
+        Update Tomcat Native to 1.2.38 to pick up Windows binaries built with
+        OpenSSL 1.1.1v. (markt)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Tomcat_8.5.91_(schultz)"><span id="Tomcat_8.5.91_(schultz)_rtext" style="float: right;">2023-07-10</span> Tomcat 8.5.91 (schultz)</h3><div class="text">
+  <div class="subsection"><h4 id="Tomcat_8.5.91_(schultz)/Catalina">Catalina</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Add: " class="icon" src="./images/add.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=59232">59232</a>: Add
+        <code>org.apache.catalina.core.ContextNamingInfoListener</code>,
+        a listener which creates context naming information environment entries.
+        (michaelo)
+      </li>
+      <li><img alt="Add: " class="icon" src="./images/add.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=66665">66665</a>: Add
+        <code>org.apache.catalina.core.PropertiesRoleMappingListener</code>,
+        a listener which populates the context's role mapping from a properties
+        file. (michaelo)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        Fix an edge case where intra-web application symlinks would be followed
+        if the web applications were deliberately crafted to allow it even when
+        <code>allowLinking</code> was set to <code>false</code>. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        Make parsing of <code>ExtendedAccessLogValve</code> patterns more
+        robust. (markt)
+      </li>
+    </ul>
+  </div></div>
+  <div class="subsection"><h4 id="Tomcat_8.5.91_(schultz)/Coyote">Coyote</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=66627">66627</a>: Restore the documented behaviour of
+        <code>MessageBytes.getType()</code> that it returns the type of the
+        original content rather than reflecting the most recent conversion.
+        (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=66635">66635</a>: Correct certificate logging on start-up so it
+        differentiates between keystore based keys/certificates and PEM file
+        based keys/certificates and logs the relevant information for each.
+        (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        Refactor blocking reads and writes for the NIO connector to remove
+        code paths that could allow a notification from the Poller to be missed
+        resuting in a timeout rather than the expected read or write. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        Refactor waiting for an HTTP/2 stream or connection window update to
+        handle spurious wake-ups during the wait. (markt)
+      </li>
+    </ul>
+  </div></div>
+  <div class="subsection"><h4 id="Tomcat_8.5.91_(schultz)/WebSocket">WebSocket</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        Improve handling of error conditions for the WebSocket server,
+        particularly during Tomcat shutdown. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        Correct a regression in the fix for <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=66574">66574</a> that meant the
+        WebSocket session could return false for <code>onOpen()</code> before
+        the <code>onClose()</code> event had been completed. (markt)
+      </li>
+    </ul>
+  </div></div>
+  <div class="subsection"><h4 id="Tomcat_8.5.91_(schultz)/Web_applications">Web applications</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Add: " class="icon" src="./images/add.gif">
+        Documentation. Expand the security guidance to cover the embedded use
+        case and add notes on the uses made of the <code>java.io.tmpdir</code>
+        system property. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=66662">66662</a>: Documentation. Fix a typo in the name of the
+        <strong>algorithms</strong> attribute in the configuration section for
+        the Digest authentication valve. Pull request <a href="https://github.com/apache/tomcat/pull/629">#629</a> provided by
+        gohilmca. (markt)
+      </li>
+    </ul>
+  </div></div>
+  <div class="subsection"><h4 id="Tomcat_8.5.91_(schultz)/Other">Other</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Add: " class="icon" src="./images/add.gif">
+        Include the Windows specific binary distributions in the files uploaded
+        to Maven Central. (markt)
+      </li>
+      <li><img alt="Add: " class="icon" src="./images/add.gif">
+        Improvements to French translations. (remm)
+      </li>
+      <li><img alt="Add: " class="icon" src="./images/add.gif">
+        Improvements to Japanese translations. Contributed by tak7iji. (markt)
+      </li>
+      <li><img alt="Update: " class="icon" src="./images/update.gif">
+        Update UnboundID to 6.0.9. (markt)
+      </li>
+      <li><img alt="Update: " class="icon" src="./images/update.gif">
+        Update Checkstyle to 10.12.1. (markt)
+      </li>
+      <li><img alt="Update: " class="icon" src="./images/update.gif">
+        Update JSign to 5.0. (markt/rjung)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Tomcat_8.5.90_(schultz)"><span id="Tomcat_8.5.90_(schultz)_rtext" style="float: right;">2023-06-12</span> Tomcat 8.5.90 (schultz)</h3><div class="text">
+  <div class="subsection"><h4 id="Tomcat_8.5.90_(schultz)/Catalina">Catalina</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Add: " class="icon" src="./images/add.gif">
+        Add <code>org.apache.catalina.core.StandardVirtualThreadExecutor</code>,
+        a virtual thread based executor that may be used with one or more
+        Connectors to process requests received by those Connectors using
+        virtual threads. This Executor requires a minimum Java version of Java
+        21. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=66513">66513</a>: Add a per session Semaphore to the
+        <code>PersistentValve</code> that ensures that, within a single Tomcat
+        instance, there is no more than one concurrent request per session. Also
+        expand the debug logging to include whether a request bypasses the Valve
+        and the reason if a request fails to obtain the per session Semaphore.
+        (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=66609">66609</a>: Ensure that the default servlet correctly escapes
+        file names in directory listings when using XML output. Based on pull
+        request <a href="https://github.com/apache/tomcat/pull/621">#621</a> by Alex Kachanov. (markt)
+      </li>
+      <li><img alt="Add: " class="icon" src="./images/add.gif">
+       <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=66618">66618</a>: Add a numeric last modified field to the XML directory
+       listings produced by the default servlet to enable sorting in the XSLT.
+       Pull request <a href="https://github.com/apache/tomcat/pull/622">#622</a> by Alex Kachanov. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=66621">66621</a>: Attempts to lock a collection with WebDAV may
+        incorrectly fail if a child collection has an expired lock. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=66622">66622</a>: Deprecate the <code>xssProtectionEnabled</code>
+        setting from the <code>HttpHeaderSecurityFilter</code> and change the
+        default value to <code>false</code> as support for the associated HTTP
+        header has been removed from all major browsers. (markt)
+      </li>
+    </ul>
+  </div></div>
+  <div class="subsection"><h4 id="Tomcat_8.5.90_(schultz)/Coyote">Coyote</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Update: " class="icon" src="./images/update.gif">
+        Update the HTTP/2 implementation to use the prioritization scheme
+        defined in RFC 9218 rather than the one defined in RFC 7540.
+        (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=66602">66602</a>: not sending WINDOW_UPDATE when dataLength is ZERO
+        on call SwallowedDataFramePayload. Pull request #619 by
+        ledefe. (lihan)
+      </li>
+    </ul>
+  </div></div>
+  <div class="subsection"><h4 id="Tomcat_8.5.90_(schultz)/WebSocket">WebSocket</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=66548">66548</a>: Expand the validation of the value of the
+        <code>Sec-Websocket-Key</code> header in the HTTP upgrade request that
+        initiates a WebSocket connection. The value is not decoded but it is
+        checked for the correct length and that only valid characters from the
+        base64 alphabet are used. (markt)
+      </li>
+    </ul>
+  </div></div>
+  <div class="subsection"><h4 id="Tomcat_8.5.90_(schultz)/Other">Other</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Update: " class="icon" src="./images/update.gif">
+        Update to Commons Daemon 1.3.4. (markt)
+      </li>
+      <li><img alt="Add: " class="icon" src="./images/add.gif">
+        Improvements to French translations. (remm)
+      </li>
+      <li><img alt="Update: " class="icon" src="./images/update.gif">
+        Update Checkstyle to 10.12.0. (markt)
+      </li>
+      <li><img alt="Update: " class="icon" src="./images/update.gif">
+        Update the packaged version of the Apache Tomcat Native Library to
+        1.2.37 to pick up the Windows binaries built with with OpenSSL 1.1.1u.
+        (markt)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Tomcat_8.5.89_(schultz)"><span id="Tomcat_8.5.89_(schultz)_rtext" style="float: right;">2023-05-19</span> Tomcat 8.5.89 (schultz)</h3><div class="text">
+  <div class="subsection"><h4 id="Tomcat_8.5.89_(schultz)/Catalina">Catalina</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=66567">66567</a>: Fix missing <code>IllegalArgumentException</code>
+        after the Tomcat code was converted to using URI instead of URL. (remm)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        Escape timestamp output in <code>AccessLogValve</code> if a
+        <code>SimpleDateFormat</code> is used which contains verbatim
+        characters that need escaping. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="./images/update.gif">
+        Change output of vertical tab in <code>AccessLogValve</code> from
+        <code>\v</code> to <code>\u000b</code>. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="./images/update.gif">
+        Improve performance of escaping in <code>AccessLogValve</code>
+        roughly by a factor of two. (rjung)
+      </li>
+      <li><img alt="Update: " class="icon" src="./images/update.gif">
+        Improve <code>JsonAccessLogValve</code>: support more patterns
+        like for headers and attributes. Those will be logged as sub objects.
+        (rjung)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://github.com/apache/tomcat/pull/613">#613</a>: Fix possible partial corrupted file copies when using
+        file locking protection or the manager servlet. Submitted
+        by Jack Shirazi. (remm)
+      </li>
+      <li><img alt="Add: " class="icon" src="./images/add.gif">
+        Add RateLimitFilter which can be used to mitigate DoS and Brute Force
+        attacks. (isapir)
+      </li>
+    </ul>
+  </div></div>
+  <div class="subsection"><h4 id="Tomcat_8.5.89_(schultz)/Coyote">Coyote</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Add: " class="icon" src="./images/add.gif">
+        Add support for a new character set, <code>gb18030-2022</code> -
+        introduced in Java 21, to the character set caching mechanism. (markt)
+      </li>
+      <li><img alt="Code: " class="icon" src="./images/code.gif">
+        The default for the HTTP Connector attribute
+        <code>allowHostHeaderMismatch</code> has been changed from
+        <code>true</code> to <code>false</code> to harden the default
+        configuration. (markt)
+      </li>
+      <li><img alt="Code: " class="icon" src="./images/code.gif">
+        The default for the HTTP Connector attribute
+        <code>rejectIllegalHeader</code> has been changed from
+        <code>false</code> to <code>true</code> to harden the default
+        configuration. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        Fix an edge case in HTTP header parsing and ensure that HTTP headers
+        without names are treated as invalid. (markt)
+      </li>
+      <li><img alt="Update: " class="icon" src="./images/update.gif">
+        Deprecate the HTTP Connector settings <code>rejectIllegalHeader</code>
+        and <code>allowHostHeaderMismatch</code> as they have been removed in
+        Tomcat 11 onwards. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=66591">66591</a>: Fix a regression introduced in the fix for
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=66512">66512</a> that meant that an AJP Send Headers was not sent for
+        responses where no HTTP headers were set. (markt)
+      </li>
+    </ul>
+  </div></div>
+  <div class="subsection"><h4 id="Tomcat_8.5.89_(schultz)/Jasper">Jasper</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=66582">66582</a>: Account for EL having stricter requirements for static
+        imports than JSPs when adding JSP static imports to the EL context.
+        (markt)
+      </li>
+    </ul>
+  </div></div>
+  <div class="subsection"><h4 id="Tomcat_8.5.89_(schultz)/WebSocket">WebSocket</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=66574">66574</a>: Refactor WebSocket session close to remove the lock on
+        the <code>SocketWrapper</code> which was a potential cause of deadlocks
+        if the application code used simulated blocking. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=66575">66575</a>: Avoid unchecked use of the backing array of a
+        buffer provided by the user in the compression transformation. (remm)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        Improve exception handling when flushing batched messages during
+        WebSocket session close. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=66581">66581</a>: Update <code>AsyncChannelGroupUtil</code> to align it
+        with the current defaults for AsynchronousChannelGroup. Pull request
+        <a href="https://github.com/apache/tomcat/pull/612">#612</a> by Matthew Painter. (markt)
+      </li>
+    </ul>
+  </div></div>
+  <div class="subsection"><h4 id="Tomcat_8.5.89_(schultz)/Other">Other</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Add: " class="icon" src="./images/add.gif">
+        Improvements to French translations. (remm)
+      </li>
+      <li><img alt="Add: " class="icon" src="./images/add.gif">
+        Improvements to Chinese translations. (lihan)
+      </li>
+      <li><img alt="Update: " class="icon" src="./images/update.gif">
+        Update Checkstyle to 10.10.0. (markt)
+      </li>
+      <li><img alt="Update: " class="icon" src="./images/update.gif">
+        Update Jacoco to 0.8.10. (markt)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Tomcat_8.5.88_(schultz)"><span id="Tomcat_8.5.88_(schultz)_rtext" style="float: right;">2023-04-19</span> Tomcat 8.5.88 (schultz)</h3><div class="text">
+  <div class="subsection"><h4 id="Tomcat_8.5.88_(schultz)/Catalina">Catalina</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=65995">65995</a>: Implement RFC 9239 and use
+        <code>text/javascript</code> as the media type for JavaScript rather
+        than <code>application/javascript</code>. (markt)
+      </li>
+      <li><img alt="Add: " class="icon" src="./images/add.gif">
+        Add an access log valve that uses a json format. Based on pull request
+        <a href="https://github.com/apache/tomcat/pull/539">#539</a> provided by Thomas Meyer. (remm)
+      </li>
+      <li><img alt="Add: " class="icon" src="./images/add.gif">
+        Harden the FORM authentication process against DoS attacks by using a
+        reduced session timeout if the FORM authentication process creates a
+        session. The duration of this timeout is configured by the
+        <code>authenticationSessionTimeout</code> attribute of the FORM
+        authenticator. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=66527">66527</a>: Correct the Javadoc for the
+        <code>Tomcat.addWebapp()</code> methods that incorrectly stated that the
+        <code>docBase</code> parameter could be a relative path. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=66524">66524</a> Correct eviction ordering in WebResource cache to
+        by LRU as intended. (schultz)
+      </li>
+      <li><img alt="Update: " class="icon" src="./images/update.gif">
+        Use server.xml to reduce the default value of
+        <code>maxParameterCount</code> from 10,000 to 1,000. If not configured
+        in server.xml, the default remains 10,000. (markt)
+      </li>
+      <li><img alt="Add: " class="icon" src="./images/add.gif">
+        Update Digest authentication support to align with RFC 7616. This adds a
+        new configuration attribute, <code>algorithms</code>, to the
+        <code>DigestAuthenticator</code> with a default of
+        <code>SHA-256,MD5</code>. (markt)
+      </li>
+      <li><img alt="Update: " class="icon" src="./images/update.gif">
+        Add support code for custom user attributes in <code>RealmBase</code>.
+        Based on code from <a href="https://github.com/apache/tomcat/pull/473">#473</a> by Carsten Klein. (remm)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=66541">66541</a>: Improve handling for cached resources for resources
+        that use custom URL schemes. The scheme specific <code>equals()</code>
+        and <code>hashCode()</code> algorithms, if present, will now be used for
+        URLs for these resources. This addresses a potential performance issue
+        with some OSGi custom URL schemes that can trigger potentially slow DNS
+        lookups in some configurations. Based on a patch provided by Tom
+        Whitmore. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        When using a custom session manager deployed as part of the web
+        application, avoid <code>ClassNotFoundException</code>s when validating
+        session IDs extracted from requests. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=66543">66543</a>: Give <code>StandardContext#fireRequestDestroyEvent</code>
+         its own log message. (fschumacher)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=66554">66554</a>: Initialize Random during server initialization to
+        avoid possible JVM thread creation in the webapp context on some
+        platforms. (remm)
+      </li>
+    </ul>
+  </div></div>
+  <div class="subsection"><h4 id="Tomcat_8.5.88_(schultz)/Coyote">Coyote</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        JSON filter should support specific escaping for common special
+        characters as defined in RFC 8259. Based on code submitted by
+        Thomas Meyer. (remm)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=66511">66511</a>: Fix <code>GzipOutputFilter</code> (used for compressed
+        HTTP responses) when used with direct buffers. Patch suggested by Arjen
+        Poutsma. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=66512">66512</a>: Align AJP handling of invalid HTTP response headers
+        (they are now removed from the response) with HTTP. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=66530">66530</a>: Correct a regression in the fix for bug
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=66442">66442</a> that meant that streams without a response body did not
+        decrement the active stream count when completing leading to
+        <code>ERR_HTTP2_SERVER_REFUSED_STREAM</code> for some connections.
+        (markt)
+      </li>
+      <li><img alt="Code: " class="icon" src="./images/code.gif">
+        Refactor synchronization blocks locking on <code>SocketWrapper</code> to
+        use <code>ReentrantLock</code> to support users wishing to experiment
+        with project Loom. (markt)
+      </li>
+    </ul>
+  </div></div>
+  <div class="subsection"><h4 id="Tomcat_8.5.88_(schultz)/Jasper">Jasper</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=66536">66536</a>: Fix parsing of tag files that meant that tag
+        directives could be ignored for some tag files. (markt)
+      </li>
+    </ul>
+  </div></div>
+  <div class="subsection"><h4 id="Tomcat_8.5.88_(schultz)/Cluster">Cluster</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=66535">66535</a>: Redefine the <code>maxValidTime</code> attribute of
+        <code>FarmWarDeployer</code> to be the maximum time allowed between
+        receiving parts of a transferred file before the transfer is cancelled
+        and the associated resources cleaned-up. A new warning message will be
+        logged if the file transfer is cancelled. (markt)
+      </li>
+    </ul>
+  </div></div>
+  <div class="subsection"><h4 id="Tomcat_8.5.88_(schultz)/WebSocket">WebSocket</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=66508">66508</a>: When using WebSocket with NIO2, avoid waiting for
+        a timeout before sending the close frame if an I/O error occurs during a
+        write. (markt)
+      </li>
+    </ul>
+  </div></div>
+  <div class="subsection"><h4 id="Tomcat_8.5.88_(schultz)/Other">Other</h4><div class="text">
+    <ul class="changelog">
+      <li><img alt="Add: " class="icon" src="./images/add.gif">
+        Improvements to French translations. (remm)
+      </li>
+      <li><img alt="Add: " class="icon" src="./images/add.gif">
+        Improvements to Japanese translations. Contributed by Shirayuking and
+        tak7iji. (markt)
+      </li>
+      <li><img alt="Add: " class="icon" src="./images/add.gif">
+        Improvements to Chinese translations. Contributed by totoo. (markt)
+      </li>
+      <li><img alt="Code: " class="icon" src="./images/code.gif">
+        Refactor code using <code>MD5Encoder</code> to use
+        <code>HexUtils.toHexString()</code>. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        <a href="https://bz.apache.org/bugzilla/show_bug.cgi?id=66507">66507</a>: Fix a bug that <code>$JAVA_OPTS</code> is not passed
+        to the jvm in <code>catalina.sh</code> when calling <code>version</code>.
+        Patch suggested by Eric Hamilton. (lihan)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        Improve the error messages if <code>JRE_HOME</code> or
+        <code>JAVA_HOME</code> are not set correctly. On windows, align the
+        handling of <code>JRE_HOME</code> and <code>JAVA_HOME</code> for the
+        start-up scripts and the service install script. (markt)
+      </li>
+      <li><img alt="Update: " class="icon" src="./images/update.gif">
+        Update UnboundID to 6.0.8. (markt)
+      </li>
+      <li><img alt="Update: " class="icon" src="./images/update.gif">
+        Update Checkstyle to 10.9.3. (markt)
+      </li>
+      <li><img alt="Update: " class="icon" src="./images/update.gif">
+        Update Jacoco to 0.8.9. (markt)
+      </li>
+      <li><img alt="Fix: " class="icon" src="./images/fix.gif">
+        Enhance PEMFile to load from an InputStream. Patch provided by
+        Romain Manni-Bucau. (schultz)
+      </li>
+    </ul>
+  </div></div>
+</div><h3 id="Tomcat_8.5.87_(schultz)"><span id="Tomcat_8.5.87_(schultz)_rtext" style="float: right;">2023-03-03</span> Tomcat 8.5.87 (schultz)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.87_(schultz)/General">General</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -42,7 +894,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.86_(schultz)"><span style="float: right;">2023-02-24</span> Tomcat 8.5.86 (schultz)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.86_(schultz)"><span id="Tomcat_8.5.86_(schultz)_rtext" style="float: right;">2023-02-24</span> Tomcat 8.5.86 (schultz)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.86_(schultz)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -134,7 +986,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.85_(schultz)"><span style="float: right;">2023-01-19</span> Tomcat 8.5.85 (schultz)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.85_(schultz)"><span id="Tomcat_8.5.85_(schultz)_rtext" style="float: right;">2023-01-19</span> Tomcat 8.5.85 (schultz)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.85_(schultz)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -261,7 +1113,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.84_(schultz)"><span style="float: right;">2022-11-21</span> Tomcat 8.5.84 (schultz)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.84_(schultz)"><span id="Tomcat_8.5.84_(schultz)_rtext" style="float: right;">2022-11-21</span> Tomcat 8.5.84 (schultz)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.84_(schultz)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -352,7 +1204,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.83_(markt)"><span style="float: right;">2022-10-11</span> Tomcat 8.5.83 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.83_(markt)"><span id="Tomcat_8.5.83_(markt)_rtext" style="float: right;">2022-10-11</span> Tomcat 8.5.83 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.83_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -592,7 +1444,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.82_(schultz)"><span style="float: right;">2022-08-13</span> Tomcat 8.5.82 (schultz)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.82_(schultz)"><span id="Tomcat_8.5.82_(schultz)_rtext" style="float: right;">2022-08-13</span> Tomcat 8.5.82 (schultz)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.82_(schultz)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -695,7 +1547,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.81_(schultz)"><span style="float: right;">2022-06-11</span> Tomcat 8.5.81 (schultz)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.81_(schultz)"><span id="Tomcat_8.5.81_(schultz)_rtext" style="float: right;">2022-06-11</span> Tomcat 8.5.81 (schultz)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.81_(schultz)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -711,7 +1563,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.80_(schultz)"><span style="float: right;">not released</span> Tomcat 8.5.80 (schultz)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.80_(schultz)"><span id="Tomcat_8.5.80_(schultz)_rtext" style="float: right;">not released</span> Tomcat 8.5.80 (schultz)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.80_(schultz)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -823,7 +1675,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.79_(schultz)"><span style="float: right;">2022-05-23</span> Tomcat 8.5.79 (schultz)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.79_(schultz)"><span id="Tomcat_8.5.79_(schultz)_rtext" style="float: right;">2022-05-23</span> Tomcat 8.5.79 (schultz)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.79_(schultz)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -940,7 +1792,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.78_(markt)"><span style="float: right;">2022-04-01</span> Tomcat 8.5.78 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.78_(markt)"><span id="Tomcat_8.5.78_(markt)_rtext" style="float: right;">2022-04-01</span> Tomcat 8.5.78 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.78_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Add: " class="icon" src="./images/add.gif">
@@ -1045,7 +1897,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.77_(schultz)"><span style="float: right;">2022-03-17</span> Tomcat 8.5.77 (schultz)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.77_(schultz)"><span id="Tomcat_8.5.77_(schultz)_rtext" style="float: right;">2022-03-17</span> Tomcat 8.5.77 (schultz)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.77_(schultz)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -1102,7 +1954,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.76_(schultz)"><span style="float: right;">2022-02-28</span> Tomcat 8.5.76 (schultz)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.76_(schultz)"><span id="Tomcat_8.5.76_(schultz)_rtext" style="float: right;">2022-02-28</span> Tomcat 8.5.76 (schultz)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.76_(schultz)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Add: " class="icon" src="./images/add.gif">
@@ -1266,7 +2118,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.75_(schultz)"><span style="float: right;">2022-01-17</span> Tomcat 8.5.75 (schultz)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.75_(schultz)"><span id="Tomcat_8.5.75_(schultz)_rtext" style="float: right;">2022-01-17</span> Tomcat 8.5.75 (schultz)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.75_(schultz)/Coyote">Coyote</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -1275,7 +2127,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.74_(schultz)"><span style="float: right;">not released</span> Tomcat 8.5.74 (schultz)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.74_(schultz)"><span id="Tomcat_8.5.74_(schultz)_rtext" style="float: right;">not released</span> Tomcat 8.5.74 (schultz)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.74_(schultz)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -1462,7 +2314,7 @@
         Update UnboundID to 6.0.3. (markt)
       </li>
     </ul>
-  </div></div></div><h3 id="Tomcat_8.5.73_(schultz)"><span style="float: right;">2021-11-17</span> Tomcat 8.5.73 (schultz)</h3><div class="text">
+  </div></div></div><h3 id="Tomcat_8.5.73_(schultz)"><span id="Tomcat_8.5.73_(schultz)_rtext" style="float: right;">2021-11-17</span> Tomcat 8.5.73 (schultz)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.73_(schultz)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -1517,7 +2369,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.72_(schultz)"><span style="float: right;">2021-10-06</span> Tomcat 8.5.72 (schultz)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.72_(schultz)"><span id="Tomcat_8.5.72_(schultz)_rtext" style="float: right;">2021-10-06</span> Tomcat 8.5.72 (schultz)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.72_(schultz)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -1596,7 +2448,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.71_(schultz)"><span style="float: right;">2021-09-13</span> Tomcat 8.5.71 (schultz)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.71_(schultz)"><span id="Tomcat_8.5.71_(schultz)_rtext" style="float: right;">2021-09-13</span> Tomcat 8.5.71 (schultz)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.71_(schultz)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -1730,7 +2582,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.70_(markt)"><span style="float: right;">2021-08-16</span> Tomcat 8.5.70 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.70_(markt)"><span id="Tomcat_8.5.70_(markt)_rtext" style="float: right;">2021-08-16</span> Tomcat 8.5.70 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.70_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -1797,7 +2649,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.69_(schultz)"><span style="float: right;">2021-07-05</span> Tomcat 8.5.69 (schultz)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.69_(schultz)"><span id="Tomcat_8.5.69_(schultz)_rtext" style="float: right;">2021-07-05</span> Tomcat 8.5.69 (schultz)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.69_(schultz)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Code: " class="icon" src="./images/code.gif">
@@ -1940,7 +2792,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.68_(schultz)"><span style="float: right;">2021-06-15</span> Tomcat 8.5.68 (schultz)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.68_(schultz)"><span id="Tomcat_8.5.68_(schultz)_rtext" style="float: right;">2021-06-15</span> Tomcat 8.5.68 (schultz)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.68_(schultz)/Other">Other</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Update: " class="icon" src="./images/update.gif">
@@ -1955,7 +2807,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.67_(schultz)"><span style="float: right;">not released</span> Tomcat 8.5.67 (schultz)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.67_(schultz)"><span id="Tomcat_8.5.67_(schultz)_rtext" style="float: right;">not released</span> Tomcat 8.5.67 (schultz)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.67_(schultz)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -2141,7 +2993,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.66_(markt)"><span style="float: right;">2021-05-12</span> Tomcat 8.5.66 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.66_(markt)"><span id="Tomcat_8.5.66_(markt)_rtext" style="float: right;">2021-05-12</span> Tomcat 8.5.66 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.66_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Code: " class="icon" src="./images/code.gif">
@@ -2263,7 +3115,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.65_(markt)"><span style="float: right;">2021-04-06</span> Tomcat 8.5.65 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.65_(markt)"><span id="Tomcat_8.5.65_(markt)_rtext" style="float: right;">2021-04-06</span> Tomcat 8.5.65 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.65_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -2344,7 +3196,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.64_(markt)"><span style="float: right;">2021-03-10</span> Tomcat 8.5.64 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.64_(markt)"><span id="Tomcat_8.5.64_(markt)_rtext" style="float: right;">2021-03-10</span> Tomcat 8.5.64 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.64_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -2442,7 +3294,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.63_(markt)"><span style="float: right;">2021-02-03</span> Tomcat 8.5.63 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.63_(markt)"><span id="Tomcat_8.5.63_(markt)_rtext" style="float: right;">2021-02-03</span> Tomcat 8.5.63 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.63_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -2459,7 +3311,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.62_(markt)"><span style="float: right;">not released</span> Tomcat 8.5.62 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.62_(markt)"><span id="Tomcat_8.5.62_(markt)_rtext" style="float: right;">not released</span> Tomcat 8.5.62 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.62_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -2606,7 +3458,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.61_(markt)"><span style="float: right;">2020-12-08</span> Tomcat 8.5.61 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.61_(markt)"><span id="Tomcat_8.5.61_(markt)_rtext" style="float: right;">2020-12-08</span> Tomcat 8.5.61 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.61_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -2689,7 +3541,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.60_(markt)"><span style="float: right;">2020-11-17</span> Tomcat 8.5.60 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.60_(markt)"><span id="Tomcat_8.5.60_(markt)_rtext" style="float: right;">2020-11-17</span> Tomcat 8.5.60 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.60_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -2801,7 +3653,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.59_(markt)"><span style="float: right;">2020-10-09</span> Tomcat 8.5.59 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.59_(markt)"><span id="Tomcat_8.5.59_(markt)_rtext" style="float: right;">2020-10-09</span> Tomcat 8.5.59 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.59_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -2949,7 +3801,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.58_(markt)"><span style="float: right;">2020-09-15</span> Tomcat 8.5.58 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.58_(markt)"><span id="Tomcat_8.5.58_(markt)_rtext" style="float: right;">2020-09-15</span> Tomcat 8.5.58 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.58_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -3165,7 +4017,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.57_(markt)"><span style="float: right;">2020-07-05</span> Tomcat 8.5.57 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.57_(markt)"><span id="Tomcat_8.5.57_(markt)_rtext" style="float: right;">2020-07-05</span> Tomcat 8.5.57 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.57_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Add: " class="icon" src="./images/add.gif">
@@ -3283,7 +4135,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.56_(markt)"><span style="float: right;">2020-06-07</span> Tomcat 8.5.56 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.56_(markt)"><span id="Tomcat_8.5.56_(markt)_rtext" style="float: right;">2020-06-07</span> Tomcat 8.5.56 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.56_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -3378,7 +4230,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.55_(markt)"><span style="float: right;">2020-05-11</span> Tomcat 8.5.55 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.55_(markt)"><span id="Tomcat_8.5.55_(markt)_rtext" style="float: right;">2020-05-11</span> Tomcat 8.5.55 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.55_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Code: " class="icon" src="./images/code.gif">
@@ -3537,7 +4389,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.54_(markt)"><span style="float: right;">2020-04-08</span> Tomcat 8.5.54 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.54_(markt)"><span id="Tomcat_8.5.54_(markt)_rtext" style="float: right;">2020-04-08</span> Tomcat 8.5.54 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.54_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -3661,7 +4513,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.53_(markt)"><span style="float: right;">2020-03-16</span> Tomcat 8.5.53 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.53_(markt)"><span id="Tomcat_8.5.53_(markt)_rtext" style="float: right;">2020-03-16</span> Tomcat 8.5.53 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.53_(markt)/Coyote">Coyote</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -3682,7 +4534,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.52_(markt)"><span style="float: right;">not released</span> Tomcat 8.5.52 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.52_(markt)"><span id="Tomcat_8.5.52_(markt)_rtext" style="float: right;">not released</span> Tomcat 8.5.52 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.52_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -3829,7 +4681,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.51_(markt)"><span style="float: right;">2020-02-11</span> Tomcat 8.5.51 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.51_(markt)"><span id="Tomcat_8.5.51_(markt)_rtext" style="float: right;">2020-02-11</span> Tomcat 8.5.51 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.51_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Code: " class="icon" src="./images/code.gif">
@@ -4035,7 +4887,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.50_(markt)"><span style="float: right;">2019-12-12</span> Tomcat 8.5.50 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.50_(markt)"><span id="Tomcat_8.5.50_(markt)_rtext" style="float: right;">2019-12-12</span> Tomcat 8.5.50 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.50_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Add: " class="icon" src="./images/add.gif">
@@ -4219,7 +5071,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.49_(markt)"><span style="float: right;">2019-11-21</span> Tomcat 8.5.49 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.49_(markt)"><span id="Tomcat_8.5.49_(markt)_rtext" style="float: right;">2019-11-21</span> Tomcat 8.5.49 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.49_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -4235,7 +5087,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.48_(markt)"><span style="float: right;">not released</span> Tomcat 8.5.48 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.48_(markt)"><span id="Tomcat_8.5.48_(markt)_rtext" style="float: right;">not released</span> Tomcat 8.5.48 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.48_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -4414,7 +5266,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.47_(markt)"><span style="float: right;">2019-10-11</span> Tomcat 8.5.47 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.47_(markt)"><span id="Tomcat_8.5.47_(markt)_rtext" style="float: right;">2019-10-11</span> Tomcat 8.5.47 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.47_(markt)/Coyote">Coyote</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -4497,7 +5349,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.46_(markt)"><span style="float: right;">2019-09-19</span> Tomcat 8.5.46 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.46_(markt)"><span id="Tomcat_8.5.46_(markt)_rtext" style="float: right;">2019-09-19</span> Tomcat 8.5.46 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.46_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -4642,7 +5494,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.45_(markt)"><span style="float: right;">2019-08-21</span> Tomcat 8.5.45 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.45_(markt)"><span id="Tomcat_8.5.45_(markt)_rtext" style="float: right;">2019-08-21</span> Tomcat 8.5.45 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.45_(markt)/Coyote">Coyote</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Code: " class="icon" src="./images/code.gif">
@@ -4652,7 +5504,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.44_(markt)"><span style="float: right;">not released</span> Tomcat 8.5.44 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.44_(markt)"><span id="Tomcat_8.5.44_(markt)_rtext" style="float: right;">not released</span> Tomcat 8.5.44 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.44_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Add: " class="icon" src="./images/add.gif">
@@ -4846,7 +5698,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.43_(markt)"><span style="float: right;">2019-07-09</span> Tomcat 8.5.43 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.43_(markt)"><span id="Tomcat_8.5.43_(markt)_rtext" style="float: right;">2019-07-09</span> Tomcat 8.5.43 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.43_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Update: " class="icon" src="./images/update.gif">
@@ -4970,7 +5822,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.42_(markt)"><span style="float: right;">2019-06-07</span> Tomcat 8.5.42 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.42_(markt)"><span id="Tomcat_8.5.42_(markt)_rtext" style="float: right;">2019-06-07</span> Tomcat 8.5.42 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.42_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Add: " class="icon" src="./images/add.gif">
@@ -5072,7 +5924,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.41_(markt)"><span style="float: right;">2019-05-13</span> Tomcat 8.5.41 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.41_(markt)"><span id="Tomcat_8.5.41_(markt)_rtext" style="float: right;">2019-05-13</span> Tomcat 8.5.41 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.41_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -5173,7 +6025,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.40_(markt)"><span style="float: right;">2019-04-12</span> Tomcat 8.5.40 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.40_(markt)"><span id="Tomcat_8.5.40_(markt)_rtext" style="float: right;">2019-04-12</span> Tomcat 8.5.40 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.40_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -5332,7 +6184,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.39_(markt)"><span style="float: right;">2019-03-19</span> Tomcat 8.5.39 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.39_(markt)"><span id="Tomcat_8.5.39_(markt)_rtext" style="float: right;">2019-03-19</span> Tomcat 8.5.39 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.39_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -5538,7 +6390,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.38_(markt)"><span style="float: right;">2019-02-08</span> Tomcat 8.5.38 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.38_(markt)"><span id="Tomcat_8.5.38_(markt)_rtext" style="float: right;">2019-02-08</span> Tomcat 8.5.38 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.38_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -5728,7 +6580,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.37_(markt)"><span style="float: right;">2018-12-18</span> Tomcat 8.5.37 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.37_(markt)"><span id="Tomcat_8.5.37_(markt)_rtext" style="float: right;">2018-12-18</span> Tomcat 8.5.37 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.37_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Update: " class="icon" src="./images/update.gif">
@@ -5745,7 +6597,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.36_(markt)"><span style="float: right;">not released</span> Tomcat 8.5.36 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.36_(markt)"><span id="Tomcat_8.5.36_(markt)_rtext" style="float: right;">not released</span> Tomcat 8.5.36 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.36_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -5854,7 +6706,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.35_(markt)"><span style="float: right;">2018-11-07</span> Tomcat 8.5.35 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.35_(markt)"><span id="Tomcat_8.5.35_(markt)_rtext" style="float: right;">2018-11-07</span> Tomcat 8.5.35 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.35_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Add: " class="icon" src="./images/add.gif">
@@ -6041,7 +6893,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.34_(markt)"><span style="float: right;">2018-09-10</span> Tomcat 8.5.34 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.34_(markt)"><span id="Tomcat_8.5.34_(markt)_rtext" style="float: right;">2018-09-10</span> Tomcat 8.5.34 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.34_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Add: " class="icon" src="./images/add.gif">
@@ -6138,7 +6990,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.33_(markt)"><span style="float: right;">2018-08-17</span> Tomcat 8.5.33 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.33_(markt)"><span id="Tomcat_8.5.33_(markt)_rtext" style="float: right;">2018-08-17</span> Tomcat 8.5.33 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.33_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -6347,7 +7199,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.32_(markt)"><span style="float: right;">2018-06-25</span> Tomcat 8.5.32 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.32_(markt)"><span id="Tomcat_8.5.32_(markt)_rtext" style="float: right;">2018-06-25</span> Tomcat 8.5.32 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.32_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -6595,7 +7447,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.31_(markt)"><span style="float: right;">2018-05-03</span> Tomcat 8.5.31 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.31_(markt)"><span id="Tomcat_8.5.31_(markt)_rtext" style="float: right;">2018-05-03</span> Tomcat 8.5.31 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.31_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -6710,7 +7562,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.30_(markt)"><span style="float: right;">2018-04-07</span> Tomcat 8.5.30 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.30_(markt)"><span id="Tomcat_8.5.30_(markt)_rtext" style="float: right;">2018-04-07</span> Tomcat 8.5.30 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.30_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -6841,7 +7693,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.29_(markt)"><span style="float: right;">2018-03-08</span> Tomcat 8.5.29 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.29_(markt)"><span id="Tomcat_8.5.29_(markt)_rtext" style="float: right;">2018-03-08</span> Tomcat 8.5.29 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.29_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -6927,7 +7779,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.28_(markt)"><span style="float: right;">2018-02-11</span> Tomcat 8.5.28 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.28_(markt)"><span id="Tomcat_8.5.28_(markt)_rtext" style="float: right;">2018-02-11</span> Tomcat 8.5.28 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.28_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -7032,7 +7884,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.27_(markt)"><span style="float: right;">2018-01-22</span> Tomcat 8.5.27 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.27_(markt)"><span id="Tomcat_8.5.27_(markt)_rtext" style="float: right;">2018-01-22</span> Tomcat 8.5.27 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.27_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -7070,7 +7922,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.26_(markt)"><span style="float: right;">not released</span> Tomcat 8.5.26 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.26_(markt)"><span id="Tomcat_8.5.26_(markt)_rtext" style="float: right;">not released</span> Tomcat 8.5.26 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.26_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -7078,7 +7930,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.25_(markt)"><span style="float: right;">not released</span> Tomcat 8.5.25 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.25_(markt)"><span id="Tomcat_8.5.25_(markt)_rtext" style="float: right;">not released</span> Tomcat 8.5.25 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.25_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -7253,7 +8105,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.24_(markt)"><span style="float: right;">2017-11-30</span> Tomcat 8.5.24 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.24_(markt)"><span id="Tomcat_8.5.24_(markt)_rtext" style="float: right;">2017-11-30</span> Tomcat 8.5.24 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.24_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Add: " class="icon" src="./images/add.gif">
@@ -7517,7 +8369,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.23_(markt)"><span style="float: right;">2017-10-01</span> Tomcat 8.5.23 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.23_(markt)"><span id="Tomcat_8.5.23_(markt)_rtext" style="float: right;">2017-10-01</span> Tomcat 8.5.23 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.23_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -7545,7 +8397,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.22_(markt)"><span style="float: right;">not released</span> Tomcat 8.5.22 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.22_(markt)"><span id="Tomcat_8.5.22_(markt)_rtext" style="float: right;">not released</span> Tomcat 8.5.22 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.22_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -7613,7 +8465,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.21_(markt)"><span style="float: right;">2017-09-19</span> Tomcat 8.5.21 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.21_(markt)"><span id="Tomcat_8.5.21_(markt)_rtext" style="float: right;">2017-09-19</span> Tomcat 8.5.21 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.21_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -7820,7 +8672,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.20_(markt)"><span style="float: right;">2017-08-08</span> Tomcat 8.5.20 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.20_(markt)"><span id="Tomcat_8.5.20_(markt)_rtext" style="float: right;">2017-08-08</span> Tomcat 8.5.20 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.20_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -7886,7 +8738,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.19_(markt)"><span style="float: right;">2017-07-28</span> Tomcat 8.5.19 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.19_(markt)"><span id="Tomcat_8.5.19_(markt)_rtext" style="float: right;">2017-07-28</span> Tomcat 8.5.19 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.19_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -7927,7 +8779,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.18_(markt)"><span style="float: right;">not released</span> Tomcat 8.5.18 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.18_(markt)"><span id="Tomcat_8.5.18_(markt)_rtext" style="float: right;">not released</span> Tomcat 8.5.18 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.18_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -7983,7 +8835,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.17_(markt)"><span style="float: right;">not released</span> Tomcat 8.5.17 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.17_(markt)"><span id="Tomcat_8.5.17_(markt)_rtext" style="float: right;">not released</span> Tomcat 8.5.17 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.17_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -8059,7 +8911,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.16_(markt)"><span style="float: right;">2017-06-26</span> Tomcat 8.5.16 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.16_(markt)"><span id="Tomcat_8.5.16_(markt)_rtext" style="float: right;">2017-06-26</span> Tomcat 8.5.16 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.16_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -8271,7 +9123,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.15_(markt)"><span style="float: right;">2017-05-10</span> Tomcat 8.5.15 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.15_(markt)"><span id="Tomcat_8.5.15_(markt)_rtext" style="float: right;">2017-05-10</span> Tomcat 8.5.15 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.15_(markt)/General">General</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Add: " class="icon" src="./images/add.gif">
@@ -8408,7 +9260,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.14_(markt)"><span style="float: right;">2017-04-18</span> Tomcat 8.5.14 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.14_(markt)"><span id="Tomcat_8.5.14_(markt)_rtext" style="float: right;">2017-04-18</span> Tomcat 8.5.14 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.14_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -8516,7 +9368,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.13_(markt)"><span style="float: right;">2017-03-30</span> Tomcat 8.5.13 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.13_(markt)"><span id="Tomcat_8.5.13_(markt)_rtext" style="float: right;">2017-03-30</span> Tomcat 8.5.13 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.13_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Add: " class="icon" src="./images/add.gif">
@@ -8639,7 +9491,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.12_(markt)"><span style="float: right;">2017-03-13</span> Tomcat 8.5.12 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.12_(markt)"><span id="Tomcat_8.5.12_(markt)_rtext" style="float: right;">2017-03-13</span> Tomcat 8.5.12 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.12_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -8911,7 +9763,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.11_(markt)"><span style="float: right;">2017-01-16</span> Tomcat 8.5.11 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.11_(markt)"><span id="Tomcat_8.5.11_(markt)_rtext" style="float: right;">2017-01-16</span> Tomcat 8.5.11 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.11_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Add: " class="icon" src="./images/add.gif">
@@ -8969,7 +9821,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.10_(markt)"><span style="float: right;">not released</span> Tomcat 8.5.10 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.10_(markt)"><span id="Tomcat_8.5.10_(markt)_rtext" style="float: right;">not released</span> Tomcat 8.5.10 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.10_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Add: " class="icon" src="./images/add.gif">
@@ -9088,7 +9940,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.9_(markt)"><span style="float: right;">2016-12-08</span> Tomcat 8.5.9 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.9_(markt)"><span id="Tomcat_8.5.9_(markt)_rtext" style="float: right;">2016-12-08</span> Tomcat 8.5.9 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.9_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Update: " class="icon" src="./images/update.gif">
@@ -9315,7 +10167,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.8_(markt)"><span style="float: right;">2016-11-08</span> Tomcat 8.5.8 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.8_(markt)"><span id="Tomcat_8.5.8_(markt)_rtext" style="float: right;">2016-11-08</span> Tomcat 8.5.8 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.8_(markt)/Coyote">Coyote</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -9324,7 +10176,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.7_(markt)"><span style="float: right;">not released</span> Tomcat 8.5.7 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.7_(markt)"><span id="Tomcat_8.5.7_(markt)_rtext" style="float: right;">not released</span> Tomcat 8.5.7 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.7_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -9477,7 +10329,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.6_(markt)"><span style="float: right;">2016-10-10</span> Tomcat 8.5.6 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.6_(markt)"><span id="Tomcat_8.5.6_(markt)_rtext" style="float: right;">2016-10-10</span> Tomcat 8.5.6 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.6_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Add: " class="icon" src="./images/add.gif">
@@ -9668,7 +10520,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.5_(markt)"><span style="float: right;">2016-09-05</span> Tomcat 8.5.5 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.5_(markt)"><span id="Tomcat_8.5.5_(markt)_rtext" style="float: right;">2016-09-05</span> Tomcat 8.5.5 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.5_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -10014,7 +10866,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.4_(markt)"><span style="float: right;">2016-07-12</span> Tomcat 8.5.4 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.4_(markt)"><span id="Tomcat_8.5.4_(markt)_rtext" style="float: right;">2016-07-12</span> Tomcat 8.5.4 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.4_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -10206,7 +11058,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.3_(markt)"><span style="float: right;">2016-06-13</span> Tomcat 8.5.3 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.3_(markt)"><span id="Tomcat_8.5.3_(markt)_rtext" style="float: right;">2016-06-13</span> Tomcat 8.5.3 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.3_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -10355,7 +11207,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.2_(markt)"><span style="float: right;">2016-05-16</span> Tomcat 8.5.2 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.2_(markt)"><span id="Tomcat_8.5.2_(markt)_rtext" style="float: right;">2016-05-16</span> Tomcat 8.5.2 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.2_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -10364,7 +11216,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.1_(markt)"><span style="float: right;">not released</span> Tomcat 8.5.1 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.1_(markt)"><span id="Tomcat_8.5.1_(markt)_rtext" style="float: right;">not released</span> Tomcat 8.5.1 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.1_(markt)/Catalina">Catalina</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Fix: " class="icon" src="./images/fix.gif">
@@ -10749,7 +11601,7 @@
       </li>
     </ul>
   </div></div>
-</div><h3 id="Tomcat_8.5.0_(markt)"><span style="float: right;">2016-03-24</span> Tomcat 8.5.0 (markt)</h3><div class="text">
+</div><h3 id="Tomcat_8.5.0_(markt)"><span id="Tomcat_8.5.0_(markt)_rtext" style="float: right;">2016-03-24</span> Tomcat 8.5.0 (markt)</h3><div class="text">
   <div class="subsection"><h4 id="Tomcat_8.5.0_(markt)/General">General</h4><div class="text">
     <ul class="changelog">
       <li><img alt="Update: " class="icon" src="./images/update.gif">

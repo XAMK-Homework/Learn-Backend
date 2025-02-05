@@ -1,7 +1,7 @@
 <!DOCTYPE html SYSTEM "about:legacy-compat">
-<html lang="en"><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8"><link href="../images/docs-stylesheet.css" rel="stylesheet" type="text/css"><title>Apache Tomcat 8 Configuration Reference (8.5.87) - The HTTP Connector</title><meta name="author" content="Craig R. McClanahan"><meta name="author" content="Yoav Shapira"></head><body><div id="wrapper"><header><div id="header"><div><div><div class="logo noPrint"><a href="https://tomcat.apache.org/"><img alt="Tomcat Home" src="../images/tomcat.png"></a></div><div style="height: 1px;"></div><div class="asfLogo noPrint"><a href="https://www.apache.org/" target="_blank"><img src="../images/asf-logo.svg" alt="The Apache Software Foundation" style="width: 266px; height: 83px;"></a></div><h1>Apache Tomcat 8 Configuration Reference</h1><div class="versionInfo">
-            Version 8.5.87,
-            <time datetime="2023-02-27">Feb 27 2023</time></div><div style="height: 1px;"></div><div style="clear: left;"></div></div></div></div></header><div id="middle"><div><div id="mainLeft" class="noprint"><div><nav><div><h2>Links</h2><ul><li><a href="../index.html">Docs Home</a></li><li><a href="index.html">Config Ref. Home</a></li><li><a href="https://cwiki.apache.org/confluence/display/TOMCAT/FAQ">FAQ</a></li><li><a href="#comments_section">User Comments</a></li></ul></div><div><h2>Top Level Elements</h2><ul><li><a href="server.html">Server</a></li><li><a href="service.html">Service</a></li></ul></div><div><h2>Executors</h2><ul><li><a href="executor.html">Executor</a></li></ul></div><div><h2>Connectors</h2><ul><li><a href="http.html">HTTP/1.1</a></li><li><a href="http2.html">HTTP/2</a></li><li><a href="ajp.html">AJP</a></li></ul></div><div><h2>Containers</h2><ul><li><a href="context.html">Context</a></li><li><a href="engine.html">Engine</a></li><li><a href="host.html">Host</a></li><li><a href="cluster.html">Cluster</a></li></ul></div><div><h2>Nested Components</h2><ul><li><a href="cookie-processor.html">CookieProcessor</a></li><li><a href="credentialhandler.html">CredentialHandler</a></li><li><a href="globalresources.html">Global Resources</a></li><li><a href="jar-scanner.html">JarScanner</a></li><li><a href="jar-scan-filter.html">JarScanFilter</a></li><li><a href="listeners.html">Listeners</a></li><li><a href="loader.html">Loader</a></li><li><a href="manager.html">Manager</a></li><li><a href="realm.html">Realm</a></li><li><a href="resources.html">Resources</a></li><li><a href="sessionidgenerator.html">SessionIdGenerator</a></li><li><a href="valve.html">Valve</a></li></ul></div><div><h2>Cluster Elements</h2><ul><li><a href="cluster.html">Cluster</a></li><li><a href="cluster-manager.html">Manager</a></li><li><a href="cluster-channel.html">Channel</a></li><li><a href="cluster-membership.html">Channel/Membership</a></li><li><a href="cluster-sender.html">Channel/Sender</a></li><li><a href="cluster-receiver.html">Channel/Receiver</a></li><li><a href="cluster-interceptor.html">Channel/Interceptor</a></li><li><a href="cluster-valve.html">Valve</a></li><li><a href="cluster-deployer.html">Deployer</a></li><li><a href="cluster-listener.html">ClusterListener</a></li></ul></div><div><h2>web.xml</h2><ul><li><a href="filter.html">Filter</a></li></ul></div><div><h2>Other</h2><ul><li><a href="systemprops.html">System properties</a></li><li><a href="jaspic.html">JASPIC</a></li></ul></div></nav></div></div><div id="mainRight"><div id="content"><h2>The HTTP Connector</h2><h3 id="Table_of_Contents">Table of Contents</h3><div class="text">
+<html lang="en"><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8"><link href="../images/docs-stylesheet.css" rel="stylesheet" type="text/css"><title>Apache Tomcat 8 Configuration Reference (8.5.96) - The HTTP Connector</title><meta name="author" content="Craig R. McClanahan"><meta name="author" content="Yoav Shapira"></head><body><div id="wrapper"><header><div id="header"><div><div><div class="logo noPrint"><a href="https://tomcat.apache.org/"><img alt="Tomcat Home" src="../images/tomcat.png"></a></div><div style="height: 1px;"></div><div class="asfLogo noPrint"><a href="https://www.apache.org/" target="_blank"><img src="../images/asf-logo.svg" alt="The Apache Software Foundation" style="width: 266px; height: 83px;"></a></div><h1>Apache Tomcat 8 Configuration Reference</h1><div class="versionInfo">
+            Version 8.5.96,
+            <time datetime="2023-11-10">Nov 10 2023</time></div><div style="height: 1px;"></div><div style="clear: left;"></div></div></div></div></header><div id="middle"><div><div id="mainLeft" class="noprint"><div><nav><div><h2>Links</h2><ul><li><a href="../index.html">Docs Home</a></li><li><a href="index.html">Config Ref. Home</a></li><li><a href="https://cwiki.apache.org/confluence/display/TOMCAT/FAQ">FAQ</a></li><li><a href="#comments_section">User Comments</a></li></ul></div><div><h2>Top Level Elements</h2><ul><li><a href="server.html">Server</a></li><li><a href="service.html">Service</a></li></ul></div><div><h2>Executors</h2><ul><li><a href="executor.html">Executor</a></li></ul></div><div><h2>Connectors</h2><ul><li><a href="http.html">HTTP/1.1</a></li><li><a href="http2.html">HTTP/2</a></li><li><a href="ajp.html">AJP</a></li></ul></div><div><h2>Containers</h2><ul><li><a href="context.html">Context</a></li><li><a href="engine.html">Engine</a></li><li><a href="host.html">Host</a></li><li><a href="cluster.html">Cluster</a></li></ul></div><div><h2>Nested Components</h2><ul><li><a href="cookie-processor.html">CookieProcessor</a></li><li><a href="credentialhandler.html">CredentialHandler</a></li><li><a href="globalresources.html">Global Resources</a></li><li><a href="jar-scanner.html">JarScanner</a></li><li><a href="jar-scan-filter.html">JarScanFilter</a></li><li><a href="listeners.html">Listeners</a></li><li><a href="loader.html">Loader</a></li><li><a href="manager.html">Manager</a></li><li><a href="realm.html">Realm</a></li><li><a href="resources.html">Resources</a></li><li><a href="sessionidgenerator.html">SessionIdGenerator</a></li><li><a href="valve.html">Valve</a></li></ul></div><div><h2>Cluster Elements</h2><ul><li><a href="cluster.html">Cluster</a></li><li><a href="cluster-manager.html">Manager</a></li><li><a href="cluster-channel.html">Channel</a></li><li><a href="cluster-membership.html">Channel/Membership</a></li><li><a href="cluster-sender.html">Channel/Sender</a></li><li><a href="cluster-receiver.html">Channel/Receiver</a></li><li><a href="cluster-interceptor.html">Channel/Interceptor</a></li><li><a href="cluster-valve.html">Valve</a></li><li><a href="cluster-deployer.html">Deployer</a></li><li><a href="cluster-listener.html">ClusterListener</a></li></ul></div><div><h2>web.xml</h2><ul><li><a href="filter.html">Filter</a></li></ul></div><div><h2>Other</h2><ul><li><a href="systemprops.html">System properties</a></li><li><a href="jaspic.html">JASPIC</a></li></ul></div></nav></div></div><div id="mainRight"><div id="content"><h2>The HTTP Connector</h2><h3 id="Table_of_Contents">Table of Contents</h3><div class="text">
 <ul><li><a href="#Introduction">Introduction</a></li><li><a href="#Attributes">Attributes</a><ol><li><a href="#Common_Attributes">Common Attributes</a></li><li><a href="#Standard_Implementation">Standard Implementation</a></li><li><a href="#Java_TCP_socket_attributes">Java TCP socket attributes</a></li><li><a href="#NIO_specific_configuration">NIO specific configuration</a></li><li><a href="#NIO2_specific_configuration">NIO2 specific configuration</a></li><li><a href="#APR/native_specific_configuration">APR/native specific configuration</a></li></ol></li><li><a href="#Nested_Components">Nested Components</a></li><li><a href="#Special_Features">Special Features</a><ol><li><a href="#HTTP/1.1_and_HTTP/1.0_Support">HTTP/1.1 and HTTP/1.0 Support</a></li><li><a href="#HTTP/2_Support">HTTP/2 Support</a></li><li><a href="#Proxy_Support">Proxy Support</a></li><li><a href="#SSL_Support">SSL Support</a></li><li><a href="#SSL_Support_-_SSLHostConfig">SSL Support - SSLHostConfig</a></li><li><a href="#SSL_Support_-_Certificate">SSL Support - Certificate</a></li><li><a href="#SSL_Support_-_Connector_-_NIO_and_NIO2">SSL Support - Connector - NIO and NIO2</a></li><li><a href="#SSL_Support_-_OpenSSL's_SSL_CONF_API">SSL Support - OpenSSL's SSL_CONF API</a></li><li><a href="#Key_store_types">Key store types</a></li><li><a href="#SSL_Support_-_Connector_-_NIO_and_NIO2_(deprecated)">SSL Support - Connector - NIO and NIO2 (deprecated)</a></li><li><a href="#SSL_Support_-_Connector_-_APR/Native_(deprecated)">SSL Support - Connector - APR/Native (deprecated)</a></li><li><a href="#Connector_Comparison">Connector Comparison</a></li></ol></li></ul>
 </div><h3 id="Introduction">Introduction</h3><div class="text">
 
@@ -99,7 +99,7 @@
       <p>The maximum size in bytes of the POST which will be handled by
       the container FORM URL parameter parsing. The limit can be disabled by
       setting this attribute to a value less than zero. If not specified, this
-      attribute is set to 2097152 (2 megabytes). Note that the
+      attribute is set to 2097152 (2 MiB). Note that the
       <a href="filter.html#Failed_Request_Filter"><code>FailedRequestFilter</code></a>
       can be used to reject requests that exceed this limit.</p>
     </td></tr><tr><td><code class="attributeName">maxSavePostSize</code></td><td>
@@ -264,10 +264,13 @@
       IPv4 addresses depending on the setting of <strong>ipv6v6only</strong>) if
       configured with <code>::</code>.</p>
     </td></tr><tr><td><code class="attributeName">allowHostHeaderMismatch</code></td><td>
-      <p>By default Tomcat will allow requests that specify a host in the
+      <p>By default Tomcat will reject requests that specify a host in the
       request line but specify a different host in the host header. This
-      check can be enabled by setting this attribute to <code>false</code>. If
-      not specified, the default is <code>true</code>.</p>
+      check can be disabled by setting this attribute to <code>true</code>. If
+      not specified, the default is <code>false</code>.
+      <br>
+      This setting will be removed in Tomcat 11 onwards where it will be
+      hard-coded to <code>false</code>.</p>
     </td></tr><tr><td><code class="attributeName">allowedTrailerHeaders</code></td><td>
       <p>By default Tomcat will ignore all trailer headers when processing
       chunked input. For a header to be processed, it must be added to this
@@ -309,7 +312,7 @@
       your bandwidth) and using the sendfile feature (saving your CPU cycles).
       If the connector supports the sendfile feature, e.g. the NIO connector,
       using sendfile will take precedence over compression. The symptoms will
-      be that static files greater that 48 Kb will be sent uncompressed.
+      be that static files greater that 48 KiB will be sent uncompressed.
       You can turn off sendfile by setting <code>useSendfile</code> attribute
       of the connector, as documented below, or change the sendfile usage
       threshold in the configuration of the
@@ -409,7 +412,7 @@
       <p>Provides the default value for
       <strong>maxHttpRequestHeaderSize</strong> and
       <strong>maxHttpResponseHeaderSize</strong>. If not specified, this
-      attribute is set to 8192 (8 KB).</p>
+      attribute is set to 8192 (8 KiB).</p>
     </td></tr><tr><td><code class="attributeName">maxHttpRequestHeaderSize</code></td><td>
       <p>The maximum permitted size of the request line and headers associated
       with an HTTP request, specified in bytes. This is compared to the number
@@ -442,7 +445,7 @@
       aborted upload is when Tomcat knows that the request body is going to be
       ignored but the client still sends it. If Tomcat does not swallow the body
       the client is unlikely to see the response. If not specified the default
-      of 2097152 (2 megabytes) will be used. A value of less than zero indicates
+      of 2097152 (2 MiB) will be used. A value of less than zero indicates
       that no limit should be enforced.</p>
     </td></tr><tr><td><code class="attributeName">maxThreads</code></td><td>
       <p>The maximum number of request processing threads to be created
@@ -494,8 +497,10 @@
       value (e.g. the header name is not a token) this setting determines if the
       request will be rejected with a 400 response (<code>true</code>) or if the
       illegal header be ignored (<code>false</code>). The default value is
-      <code>false</code> which will cause the request to be processed but the
-      illegal header will be ignored.</p>
+      <code>true</code> which will cause the request to be rejected.
+      <br>
+      This setting will be removed in Tomcat 11 onwards where it will be
+      hard-coded to <code>true</code>.</p>
     </td></tr><tr><td><code class="attributeName">rejectIllegalHeaderName</code></td><td>
       <p>This attribute is deprecated. It will be removed in Tomcat 10 onwards.
       It is now an alias for <strong>rejectIllegalHeader</strong>.</p>
@@ -574,6 +579,11 @@
       <code>Keep-Alive</code> HTTP response header as described in
       <a href="https://tools.ietf.org/html/draft-thomson-hybi-http-timeout-03">this
       Internet-Draft</a>. The default value is <code>true</code>.</p>
+    </td></tr><tr><td><code class="attributeName">useVirtualThreads</code></td><td>
+      <p>(bool) Use this attribute to enable or disable usage of virtual threads
+      with the internal executor. If an executor is associated with this
+      connector, this attribute is ignored. The default value is
+      <code>false</code>.</p>
     </td></tr></table>
 
   </div></div>
@@ -1051,7 +1061,8 @@
       <code>optionalNoCA</code> if you want client certificates to be optional
       and you don't want Tomcat to check them against the list of trusted CAs.
       If the TLS provider doesn't support this option (OpenSSL does, JSSE does
-      not) it is treated as if <code>optional</code> was specified. A
+      not) it is treated as if <code>optional</code> was specified. If
+      <code>optionalNoCA</code> is configured then OCSP will also be disabled.
       <code>none</code> value (which is the default) will not require a
       certificate chain unless the client requests a resource protected by a
       security constraint that uses <code>CLIENT-CERT</code> authentication.</p>
@@ -1072,11 +1083,19 @@
       documentation for the list of ciphers supported and the syntax).
       Alternatively, a comma separated list of ciphers using the standard
       OpenSSL cipher names or the standard JSSE cipher names may be used.</p>
-      <p>When converting from OpenSSL syntax to JSSE ciphers for JSSE based
-      connectors, the behaviour of the OpenSSL syntax parsing is kept aligned
-      with the behaviour of the OpenSSL 1.1.0 development branch.</p>
+      <p>Different versions of OpenSSL may interpret the same cipher string
+      differently. For example, the <code>CCM8</code> ciphers were moved from
+      <code>HIGH</code> to <code>MEDIUM</code> in OpenSSL 3.2. Regardless of
+      the OpenSSL or JSSE version used, Tomcat converts the provided cipher
+      value to a list of ciphers in a manner consistent with the latest OpenSSL
+      development branch. This list of ciphers is then passed to the SSL
+      implementation.</p>
       <p>Only the ciphers that are supported by the SSL implementation will be
-      used.</p>
+      used. Any ciphers in the list derived from a non-default cipher string
+      that are not supported by the SSL implementation will be logged in a
+      <code>WARNING</code> message when the Connector starts. The warning can be
+      avoided by providing an explicit list of ciphers that are supported by the
+      configured SSL implementation.</p>
       <p>If not specified, a default (using the OpenSSL notation) of
       <code>HIGH:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!kRSA</code> will be
       used.</p>
@@ -1273,7 +1292,16 @@
       certificate from the specified file.</p>
       <p>If not specified, the default behaviour for JSSE is to use the
       <strong>certificateKeystorePassword</strong>. For OpenSSL the default
-      behaviour is not to use a password.</p>
+      behaviour is not to use a password, but OpenSSL will prompt for one,
+      if required.</p>
+    </td></tr><tr><td><code class="attributeName">certificateKeyPasswordFile</code></td><td>
+      <p>The password file used to access the private key associated with the server
+      certificate from the specified file. This attribute takes precedence over
+      <strong>certificateKeyPassword</strong>.</p>
+      <p>If not specified, the default behaviour for JSSE is to use the
+      <strong>certificateKeystorePasswordFile</strong>. For OpenSSL the default
+      behaviour is not to use a password (file), but OpenSSL will prompt for one,
+      if required.</p>
     </td></tr><tr><td><code class="attributeName">certificateKeystoreFile</code></td><td>
       <p>JSSE only.</p>
       <p>The pathname of the keystore file where you have stored the server
@@ -1293,6 +1321,11 @@
       <p>The password to use to access the keystore containing the server's
       private key and certificate. If not specified, a default of
       <code>changeit</code> will be used.</p>
+    </td></tr><tr><td><code class="attributeName">certificateKeystorePasswordFile</code></td><td>
+      <p>JSSE only.</p>
+      <p>The password file to use to access the keystore containing the server's
+      private key and certificate. This attribute takes precedence over
+      <strong>certificateKeystorePassword</strong>.</p>
     </td></tr><tr><td><code class="attributeName">certificateKeystoreProvider</code></td><td>
       <p>JSSE only.</p>
       <p>The name of the keystore provider to be used for the server
