@@ -6,6 +6,7 @@
 	}
 	$uri .= $_SERVER['HTTP_HOST'];
 	//header('Location: '.$uri.'/LearnHomework/Section_1/phpindex.php');
-	header('Location: '.$uri.'/LearnHomework/Section_2/index.php');
+	//header('Location: '.$uri.'/LearnHomework/Section_2/index.php');
+	header('Location: '.$uri.'/LearnHomework/Project/api.php');
 	exit;
 ?>
