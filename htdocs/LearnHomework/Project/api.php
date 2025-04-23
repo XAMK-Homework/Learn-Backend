@@ -1,161 +1,182 @@
 <?php
 header("Content-Type: application/json");
-require_once "db.php";
+include("include.php");
 
-$method = $_SERVER['REQUEST_METHOD'];
-
-$basePath = "/LearnHomework/Project/";
-$fullPath = str_replace($basePath, "", $_SERVER['REQUEST_URI']);
-$parts = explode("?", $fullPath); // Split path and query parameters
-$uri = explode("/", trim($parts[0], "/"));
-
-$endpoint = $uri[0] ?? ""; // First part of the URL
-
+// ROUTING
 switch ($endpoint) {
     case "users":
-        if ($method == "GET") {
-            if (isset($uri[1])) {
-                getUser($uri[1]); // Get user by ID
-            } else {
-                getUsers(); // Get all users
-            }
-        } elseif ($method == "POST") {
-            createUser();
-        }
+        handleUsers($method, $uri);
         break;
-
     case "rooms":
-        if ($method == "GET") {
-            if (isset($uri[1])) {
-                getRoom($uri[1]); // Get room details
-            } else {
-                $status = $_GET['status'] ?? null; // Get "status" from query parameters, if provided
-                getRooms($status); // Fetch rooms with optional status filter
-            }
-        } elseif ($method == "POST") {
-            createRoom();
-        }
+        handleRooms($method, $uri);
         break;
-
     case "rounds":
-        if ($method == "GET" && isset($uri[1])) {
-            getRound($uri[1]); // Get round details
-        } elseif ($method == "POST") {
-            createRound();
-        }
+        handleRounds($method, $uri);
         break;
-
     case "messages":
-        if ($method == "GET" && isset($uri[1])) {
-            getChatMessages($uri[1]); // Get messages for a specific room
-        } else if ($method == "POST"){
-            sendMessage();
-        }
+        handleMessages($method, $uri);
         break;
-
     default:
         http_response_code(404);
         echo json_encode(["error" => "Invalid endpoint"]);
 }
 
+// HANDLERS
+function handleUsers($method, $uri) {
+    if ($method === "GET") {
+        isset($uri[1]) ? getUser($uri[1]) : getUsers();
+    } elseif ($method === "POST") {
+        createUser();
+    }
+}
+
+function handleRooms($method, $uri) {
+    if ($method === "GET") {
+        if (isset($uri[1])) {
+            getRoom($uri[1]);
+        } else {
+            $status = $_GET['status'] ?? null;
+            getRooms($status);
+        }
+    } elseif ($method === "POST") {
+        createRoom();
+    }
+}
+
+function handleRounds($method, $uri) {
+    if ($method === "GET" && isset($uri[1])) {
+        getRound($uri[1]);
+    } elseif ($method === "POST") {
+        createRound();
+    }
+}
+
+function handleMessages($method, $uri) {
+    if ($method === "GET" && isset($uri[1])) {
+        getChatMessages($uri[1]);
+    } elseif ($method === "POST") {
+        sendMessage();
+    }
+}
+
+// DATABASE OPERATIONS
+
 function getUsers() {
-    global $conn;
-    $result = $conn->query("SELECT * FROM Users");
-    echo json_encode($result->fetch_all(MYSQLI_ASSOC));
+    global $database;
+    $result = $database->query("SELECT id, username, wins, losses FROM Users");
+    echo json_encode($result->fetchAll());
 }
 
 function getUser($id) {
-    global $conn;
-    $stmt = $conn->prepare("SELECT * FROM Users WHERE id = ?");
-    $stmt->bind_param("i", $id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    echo json_encode($result->fetch_assoc());
+    global $database;
+    $id = intval($id);
+    $user = $database->query("SELECT id, username, wins, losses FROM Users WHERE id = ?", $id)->fetchArray();
+    echo json_encode($user ?: []);
 }
 
 function createUser() {
-    global $conn;
+    global $database;
     $data = json_decode(file_get_contents("php://input"), true);
-    $stmt = $conn->prepare("INSERT INTO Users (username, wins, losses) VALUES (?, 0, 0)");
-    $stmt->bind_param("s", $data['username']);
-    $stmt->execute();
+
+    if (empty($data['username'])) {
+        http_response_code(400);
+        echo json_encode(["error" => "Username is required"]);
+        return;
+    }
+
+    $username = trim($data['username']);
+    $database->query("INSERT INTO Users (username, wins, losses) VALUES (?, 0, 0)", $username);
     echo json_encode(["message" => "User created"]);
 }
 
 function getRooms($status = null) {
-    global $conn;
-    
+    global $database;
     if ($status) {
-        $stmt = $conn->prepare("SELECT * FROM Rooms WHERE status = ?");
-        $stmt->bind_param("s", $status);
+        $rooms = $database->query("SELECT * FROM Rooms WHERE status = ?", $status)->fetchAll();
     } else {
-        $stmt = $conn->prepare("SELECT * FROM Rooms");
+        $rooms = $database->query("SELECT * FROM Rooms")->fetchAll();
     }
-    
-    $stmt->execute();
-    $result = $stmt->get_result();
-    echo json_encode($result->fetch_all(MYSQLI_ASSOC));
+    echo json_encode($rooms);
 }
 
-
 function getRoom($id) {
-    global $conn;
-    $stmt = $conn->prepare("SELECT * FROM Rooms WHERE id = ?");
-    $stmt->bind_param("i", $id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    echo json_encode($result->fetch_assoc());
+    global $database;
+    $id = intval($id);
+    $room = $database->query("SELECT * FROM Rooms WHERE id = ?", $id)->fetchArray();
+    echo json_encode($room ?: []);
 }
 
 function createRoom() {
-    global $conn;
+    global $database;
     $data = json_decode(file_get_contents("php://input"), true);
-    $stmt = $conn->prepare("INSERT INTO Rooms (host_id, status, current_round) VALUES (?, 'waiting', 1)");
-    $stmt->bind_param("i", $data['host_id']);
-    $stmt->execute();
+    if (!isset($data['host_id'])) {
+        http_response_code(400);
+        echo json_encode(["error" => "host_id is required"]);
+        return;
+    }
+
+    $host_id = intval($data['host_id']);
+    $database->query("INSERT INTO Rooms (host_id, status, current_round) VALUES (?, 'waiting', 1)", $host_id);
     echo json_encode(["message" => "Room created"]);
 }
 
 function getRound($id) {
-    global $conn;
-    $stmt = $conn->prepare("SELECT * FROM Rounds WHERE id = ?");
-    $stmt->bind_param("i", $id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    echo json_encode($result->fetch_assoc());
+    global $database;
+    $id = intval($id);
+    $round = $database->query("SELECT * FROM Rounds WHERE id = ?", $id)->fetchArray();
+    echo json_encode($round ?: []);
 }
 
 function createRound() {
-    global $conn;
+    global $database;
     $data = json_decode(file_get_contents("php://input"), true);
-    $stmt = $conn->prepare("INSERT INTO Rounds (room_id, word, clue_giver_id, winner_id) VALUES (?, ?, ?, NULL)");
-    $stmt->bind_param("isi", $data['room_id'], $data['word'], $data['clue_giver_id']);
-    $stmt->execute();
+    if (!isset($data['room_id'], $data['word'], $data['clue_giver_id'])) {
+        http_response_code(400);
+        echo json_encode(["error" => "Missing data"]);
+        return;
+    }
+
+    $database->query(
+        "INSERT INTO Rounds (room_id, word, clue_giver_id, winner_id) VALUES (?, ?, ?, NULL)",
+        intval($data['room_id']),
+        $data['word'],
+        intval($data['clue_giver_id'])
+    );
     echo json_encode(["message" => "Round created"]);
 }
 
 function getChatMessages($room_id) {
-    global $conn;
-    $stmt = $conn->prepare("SELECT Users.username, ChatMessages.message, ChatMessages.type, ChatMessages.is_correct, ChatMessages.created_at 
-                            FROM ChatMessages 
-                            JOIN Users ON ChatMessages.sender_id = Users.id 
-                            WHERE ChatMessages.room_id = ? 
-                            ORDER BY ChatMessages.created_at ASC");
-    $stmt->bind_param("i", $room_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    
-    echo json_encode($result->fetch_all(MYSQLI_ASSOC));
+    global $database;
+    $room_id = intval($room_id);
+    $messages = $database->query("
+        SELECT Users.username, ChatMessages.message, ChatMessages.type, 
+               ChatMessages.is_correct, ChatMessages.created_at
+        FROM ChatMessages
+        JOIN Users ON ChatMessages.sender_id = Users.id
+        WHERE ChatMessages.room_id = ?
+        ORDER BY ChatMessages.created_at ASC
+    ", $room_id)->fetchAll();
+    echo json_encode($messages);
 }
 
 function sendMessage() {
-    global $conn;
+    global $database;
     $data = json_decode(file_get_contents("php://input"), true);
-    
-    $stmt = $conn->prepare("INSERT INTO ChatMessages (room_id, sender_id, message, type, is_correct) VALUES (?, ?, ?, ?, ?)");
-    $stmt->bind_param("iissi", $data['room_id'], $data['sender_id'], $data['message'], $data['type'], $data['is_correct']);
-    $stmt->execute();
-    
+    if (!isset($data['room_id'], $data['sender_id'], $data['message'], $data['type'], $data['is_correct'])) {
+        http_response_code(400);
+        echo json_encode(["error" => "Missing message data"]);
+        return;
+    }
+
+    $database->query("
+        INSERT INTO ChatMessages (room_id, sender_id, message, type, is_correct)
+        VALUES (?, ?, ?, ?, ?)",
+        intval($data['room_id']),
+        intval($data['sender_id']),
+        $data['message'],
+        $data['type'],
+        intval($data['is_correct'])
+    );
+
     echo json_encode(["message" => "Message sent"]);
 }
-?>
