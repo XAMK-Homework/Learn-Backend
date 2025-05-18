@@ -21,7 +21,7 @@ $publicPages = [
 $currentPath = $_SERVER['PHP_SELF'];
 
 if (!in_array($currentPath, $publicPages)) {
-    if (!isset($_SESSION["username"])) {
+    if (!isset($_SESSION["user_id"])) {
         header("Location: /LearnHomework/Project/index.php");
         exit;
     }
@@ -41,19 +41,32 @@ $database = new db($dbHost, $dbUser, $dbPass, $dbDatabase, 'utf8');
 
 $method = $_SERVER['REQUEST_METHOD'];
 $basePath = "/LearnHomework/Project/";
-$requestUri = str_replace($basePath, "", $_SERVER['REQUEST_URI']);
+/*$requestUri = str_replace($basePath, "", $_SERVER['REQUEST_URI']);
 $pathParts = explode("?", $requestUri);
 $uri = explode("/", trim($pathParts[0], "/"));
 
+$endpoint = $uri[0] ?? "";*/
+
+$requestPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+
+// Remove base path if it exists
+if (strpos($requestPath, $basePath) === 0) {
+    $requestPath = substr($requestPath, strlen($basePath));
+}
+
+$uri = explode("/", trim($requestPath, "/"));
 $endpoint = $uri[0] ?? "";
 
 // This function can be used to print a navigation menu on all pages
 function printMenu() {
     echo '<div style="width: 350px; text-align: center" class="topnav">
-    <a style="margin: 0 15px 0 15px" class="active" href="/index.php">Login</a>
-    <a style="margin: 0 15px 0 15px" href="/main.php">Main</a>
-    <a style="margin: 0 15px 0 15px" href="/user.php">User</a>
-    <a style="margin: 0 15px 0 15px" href="/userlist.php">All users</a>
+    <a style="margin: 0 15px 0 15px" class="active" href="index.php">Login</a>
+    <a style="margin: 0 15px 0 15px" href="main.php">Main</a>
     </div>';
 }
+
+function isAdmin() {
+    return isset($_SESSION['isadmin']) && $_SESSION['isadmin'] == 1;
+}
+$username = $_SESSION['username'];
 ?>
